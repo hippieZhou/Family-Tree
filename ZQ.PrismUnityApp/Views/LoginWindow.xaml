@@ -1,0 +1,22 @@
+﻿<Window x:Class="ZQ.PrismUnityApp.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        AllowsTransparency="True"
+        prism:ViewModelLocator.AutoWireViewModel="True">
+    <Window.DataContext>
+        <vm:LoginViewModel xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"/>
+    </Window.DataContext>
+    
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Button Content="Login" Command="{Binding LoginCmd}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12"/>
+            <Button Content="Logout" Command="{Binding LogoutCmd}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
