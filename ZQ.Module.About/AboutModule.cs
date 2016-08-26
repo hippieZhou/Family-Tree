@@ -15,7 +15,7 @@ namespace ZQ.Module.About
 
         public void Initialize()
         {
-            throw new NotImplementedException();
+            _regionManager.RegisterViewWithRegion("MainRegion", typeof(Views.MainView));
         }
     }
 }

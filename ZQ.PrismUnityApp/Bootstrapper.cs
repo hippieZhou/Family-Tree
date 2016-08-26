@@ -3,6 +3,7 @@ using Prism.Unity;
 using ZQ.PrismUnityApp.Views;
 using System.Windows;
 using ZQ.PrismUnityApp.ViewModels;
+using Prism.Modularity;
 
 namespace ZQ.PrismUnityApp
 {
@@ -20,19 +21,18 @@ namespace ZQ.PrismUnityApp
                 {
                     loginVm.Validate += () =>
                     {
-                        var mainView = Container.Resolve<MainWindow>();
+                        var mainView = Container.Resolve<Shell>();
                         App.Current.MainWindow = mainView;
                         mainView.Show();
 
                         loginView.Close();
-
                     };
                 }
                 return loginView;
             }
             else
             {
-                return Container.Resolve<MainWindow>();
+                return Container.Resolve<Shell>();
             }
         }
 
@@ -40,10 +40,14 @@ namespace ZQ.PrismUnityApp
         {
             Application.Current.MainWindow.Show();
         }
+
         protected override void ConfigureModuleCatalog()
         {
-            var obj = this.ModuleCatalog.Modules;
-            base.ConfigureModuleCatalog();
+            var typeUser = typeof(Module.User.UserModule);
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeUser.Name, typeUser.AssemblyQualifiedName));
+
+            var typeAbout = typeof(Module.About.AboutModule);
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeAbout.Name, typeAbout.AssemblyQualifiedName));
         }
     }
 }

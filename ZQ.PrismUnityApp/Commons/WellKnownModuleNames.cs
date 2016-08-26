@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZQ.Event
+namespace ZQ.PrismUnityApp.Commons
 {
-    public class Events
-    { 
+    public static class WellKnownModuleNames
+    {
     }
 }

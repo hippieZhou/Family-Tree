@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace ZQ.PrismUnityApp.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainViewModel : BindableBase
     {
         private string _title = "Prism Unity Application";
         public string Title
@@ -29,7 +29,7 @@ namespace ZQ.PrismUnityApp.ViewModels
 
         
 
-        public MainWindowViewModel()
+        public MainViewModel()
         {
         }
     }

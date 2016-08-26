@@ -15,6 +15,7 @@ namespace ZQ.Module.User
 
         public void Initialize()
         {
+            _regionManager.RegisterViewWithRegion("MainRegion", typeof(Views.MainView));
         }
     }
 }
