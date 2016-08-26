@@ -23,7 +23,9 @@ namespace ZQ.PrismUnityApp
                         var mainView = Container.Resolve<MainWindow>();
                         App.Current.MainWindow = mainView;
                         mainView.Show();
+
                         loginView.Close();
+
                     };
                 }
                 return loginView;
@@ -40,6 +42,7 @@ namespace ZQ.PrismUnityApp
         }
         protected override void ConfigureModuleCatalog()
         {
+            var obj = this.ModuleCatalog.Modules;
             base.ConfigureModuleCatalog();
         }
     }
