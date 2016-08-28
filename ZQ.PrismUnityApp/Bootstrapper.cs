@@ -49,15 +49,15 @@ namespace ZQ.PrismUnityApp
             {
                 ModuleName = typeGuidance.Name,
                 ModuleType = typeGuidance.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
+                InitializationMode = InitializationMode.WhenAvailable
             };
 
-            var typeSyutsou = typeof(Module.Guidance.GuidanceModule);
+            var typeSyutsou = typeof(Module.Syutsou.SyutsouModule);
             var syutsouModule = new ModuleInfo()
             {
                 ModuleName = typeSyutsou.Name,
                 ModuleType = typeSyutsou.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
+                InitializationMode = InitializationMode.WhenAvailable
             };
 
 
@@ -66,7 +66,7 @@ namespace ZQ.PrismUnityApp
             {
                 ModuleName = typeSettings.Name,
                 ModuleType = typeSettings.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
+                InitializationMode = InitializationMode.WhenAvailable
             };
 
             var typeAbout = typeof(Module.About.AboutModule);
@@ -74,12 +74,12 @@ namespace ZQ.PrismUnityApp
             {
                 ModuleName = typeAbout.Name,
                 ModuleType = typeAbout.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
+                InitializationMode = InitializationMode.WhenAvailable
             };
 
             #endregion
 
-            //this.ModuleCatalog.AddModule(guidanceModule);
+            this.ModuleCatalog.AddModule(guidanceModule);
             this.ModuleCatalog.AddModule(syutsouModule);
             this.ModuleCatalog.AddModule(settingsModule);
             this.ModuleCatalog.AddModule(aboutModule);
