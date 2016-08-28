@@ -11,12 +11,12 @@
     <Window.DataContext>
         <vm:MainViewModel xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"/>
     </Window.DataContext>
-    
+
     <!--
     Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" 
     Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" 
     -->
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>
@@ -24,8 +24,8 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="AliceBlue">
             <StackPanel VerticalAlignment="Bottom">
-                <RadioButton GroupName="rb_Menu" Checked="RadioButton_Checked" Content="User"/>
-                <RadioButton GroupName="rb_Menu" Checked="RadioButton_Checked_1" Content="Settings"/>
+                <RadioButton GroupName="rb_Menu" Content="User"/>
+                <RadioButton GroupName="rb_Menu" Content="Settings"/>
             </StackPanel>
         </Grid>
         <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MainRegion" />
