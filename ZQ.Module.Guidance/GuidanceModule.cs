@@ -1,13 +1,13 @@
 ﻿using Prism.Modularity;
 using Prism.Regions;
 
-namespace ZQ.Module.About
+namespace ZQ.Module.Guidance
 {
-    public class AboutModule : IModule
+    public class GuidanceModule : IModule
     {
         IRegionManager _regionManager;
 
-        public AboutModule(RegionManager regionManager)
+        public GuidanceModule(RegionManager regionManager)
         {
             _regionManager = regionManager;
         }

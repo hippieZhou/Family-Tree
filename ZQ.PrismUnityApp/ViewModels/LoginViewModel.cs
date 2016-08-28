@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ZQ.PrismUnityApp.ViewModels
 {
-    public class LoginViewModel:BindableBase
+    public class LoginViewModel : BindableBase
     {
         public Action Validate;
-        public Action Close;
 
         private DelegateCommand _loginCmd;
         public DelegateCommand LoginCmd
@@ -20,10 +20,7 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _loginCmd ?? (_loginCmd = new DelegateCommand(() =>
                     {
-                        if (this.Validate != null)
-                        {
-                            this.Validate();
-                        }
+                        this.Validate?.Invoke();
                     }));
             }
         }
@@ -35,7 +32,7 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _logoutCmd ?? (_logoutCmd = new DelegateCommand(() =>
                     {
-                        App.Current.Shutdown();
+                        Application.Current.Shutdown();
                     }));
             }
         }

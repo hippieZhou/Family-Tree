@@ -11,8 +11,7 @@ namespace ZQ.PrismUnityApp
     {
         protected override DependencyObject CreateShell()
         {
-            var loginView = Container.Resolve<LoginWindow>();
-
+            var loginView = Container.TryResolve<LoginView>();
             //登录
             if (loginView != null)
             {
@@ -21,8 +20,8 @@ namespace ZQ.PrismUnityApp
                 {
                     loginVm.Validate += () =>
                     {
-                        var mainView = Container.Resolve<Shell>();
-                        App.Current.MainWindow = mainView;
+                        var mainView = Container.TryResolve<Shell>();
+                        Application.Current.MainWindow = mainView;
                         mainView.Show();
 
                         loginView.Close();
@@ -32,7 +31,7 @@ namespace ZQ.PrismUnityApp
             }
             else
             {
-                return Container.Resolve<Shell>();
+                return Container.TryResolve<Shell>();
             }
         }
 
@@ -43,11 +42,47 @@ namespace ZQ.PrismUnityApp
 
         protected override void ConfigureModuleCatalog()
         {
-            var typeUser = typeof(Module.User.UserModule);
-            this.ModuleCatalog.AddModule(new ModuleInfo(typeUser.Name, typeUser.AssemblyQualifiedName));
+            #region 模块初始化（按需加载，使用时需要手动进行加载）
+
+            var typeGuidance = typeof(Module.Guidance.GuidanceModule);
+            var guidanceModule = new ModuleInfo()
+            {
+                ModuleName = typeGuidance.Name,
+                ModuleType = typeGuidance.AssemblyQualifiedName,
+                InitializationMode = InitializationMode.OnDemand
+            };
+
+            var typeSyutsou = typeof(Module.Guidance.GuidanceModule);
+            var syutsouModule = new ModuleInfo()
+            {
+                ModuleName = typeSyutsou.Name,
+                ModuleType = typeSyutsou.AssemblyQualifiedName,
+                InitializationMode = InitializationMode.OnDemand
+            };
+
+
+            var typeSettings = typeof(Module.Settings.SettingsModule);
+            var settingsModule = new ModuleInfo()
+            {
+                ModuleName = typeSettings.Name,
+                ModuleType = typeSettings.AssemblyQualifiedName,
+                InitializationMode = InitializationMode.OnDemand
+            };
 
             var typeAbout = typeof(Module.About.AboutModule);
-            this.ModuleCatalog.AddModule(new ModuleInfo(typeAbout.Name, typeAbout.AssemblyQualifiedName));
+            var aboutModule = new ModuleInfo()
+            {
+                ModuleName = typeAbout.Name,
+                ModuleType = typeAbout.AssemblyQualifiedName,
+                InitializationMode = InitializationMode.OnDemand
+            };
+
+            #endregion
+
+            //this.ModuleCatalog.AddModule(guidanceModule);
+            this.ModuleCatalog.AddModule(syutsouModule);
+            this.ModuleCatalog.AddModule(settingsModule);
+            this.ModuleCatalog.AddModule(aboutModule);
         }
     }
 }

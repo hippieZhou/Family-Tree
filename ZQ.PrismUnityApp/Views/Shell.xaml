@@ -7,15 +7,12 @@
     x:Class="ZQ.PrismUnityApp.Views.Shell"
     WindowStartupLocation="CenterScreen"
     prism:ViewModelLocator.AutoWireViewModel="True"
-    Title="{Binding Title}" Height="350" Width="500">
+    Title="{Binding Title}" 
+    MinHeight="400" MinWidth="600"
+    MaxHeight="400" MaxWidth="600">
     <Window.DataContext>
         <vm:MainViewModel xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"/>
     </Window.DataContext>
-
-    <!--
-    Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" 
-    Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}" 
-    -->
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,10 +21,12 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="AliceBlue">
             <StackPanel VerticalAlignment="Bottom">
-                <RadioButton GroupName="rb_Menu" Content="User"/>
-                <RadioButton GroupName="rb_Menu" Content="Settings"/>
+                <RadioButton GroupName="rb_Menu" Content="祖训" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="世祖" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="设置" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="关于" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
             </StackPanel>
         </Grid>
-        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MainRegion" />
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="ContentRegion" />
     </Grid>
 </Window>

@@ -1,14 +1,13 @@
 ﻿using System.Windows;
-using ZQ.PrismUnityApp.ViewModels;
 
 namespace ZQ.PrismUnityApp.Views
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginView : Window
     {
-        public LoginWindow()
+        public LoginView()
         {
             InitializeComponent();
         }

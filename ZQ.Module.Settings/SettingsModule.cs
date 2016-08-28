@@ -1,13 +1,14 @@
 ﻿using Prism.Modularity;
 using Prism.Regions;
+using System;
 
-namespace ZQ.Module.About
+namespace ZQ.Module.Settings
 {
-    public class AboutModule : IModule
+    public class SettingsModule : IModule
     {
         IRegionManager _regionManager;
 
-        public AboutModule(RegionManager regionManager)
+        public SettingsModule(RegionManager regionManager)
         {
             _regionManager = regionManager;
         }

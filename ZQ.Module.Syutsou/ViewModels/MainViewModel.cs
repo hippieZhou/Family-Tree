@@ -1,6 +1,6 @@
 ﻿using Prism.Mvvm;
 
-namespace ZQ.Module.About.ViewModels
+namespace ZQ.Module.Syutsou.ViewModels
 {
     public class MainViewModel:BindableBase
     {

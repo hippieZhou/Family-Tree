@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ZQ.Module.About.Views
+namespace ZQ.Module.Settings.Views
 {
     /// <summary>
     /// MainView.xaml 的交互逻辑

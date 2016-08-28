@@ -1,13 +1,13 @@
 ﻿using Prism.Modularity;
 using Prism.Regions;
 
-namespace ZQ.Module.About
+namespace ZQ.Module.Syutsou
 {
-    public class AboutModule : IModule
+    public class SyutsouModule : IModule
     {
         IRegionManager _regionManager;
 
-        public AboutModule(RegionManager regionManager)
+        public SyutsouModule(RegionManager regionManager)
         {
             _regionManager = regionManager;
         }
