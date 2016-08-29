@@ -20,7 +20,10 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _loginCmd ?? (_loginCmd = new DelegateCommand(() =>
                     {
-                        this.Validate?.Invoke();
+                        if(this.Validate != null)
+                        {
+                            this.Validate();
+                        }
                     }));
             }
         }
