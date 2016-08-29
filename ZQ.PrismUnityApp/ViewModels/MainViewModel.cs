@@ -1,10 +1,14 @@
-﻿using Prism.Commands;
+﻿using Microsoft.Practices.ServiceLocation;
+using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Diagnostics;
 
 namespace ZQ.PrismUnityApp.ViewModels
 {
+    //http://www.codeproject.com/Articles/165370/Creating-View-Switching-Applications-with-Prism
+    //http://stackoverflow.com/questions/24176964/wpf-prism-mvvm-changing-modules-views
     public enum Menu
     {
         祖训 = 0x01,
@@ -29,7 +33,10 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
-                        Menu menu = Menu.世祖;
+                        var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
+                        regionManager.Regions["SyutsouModule"].Add(Views.LoginView);
+
+                        Menu menu = Menu.祖训;
                         if (Enum.TryParse(str, out menu))
                         {
                             switch (menu)
