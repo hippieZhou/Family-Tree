@@ -1,5 +1,7 @@
 ﻿using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 using Prism.Commands;
+using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -33,8 +35,18 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
+                        //var obj = ServiceLocator.Current.GetInstance<IModuleCatalog>();
+                        //var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
+                        //regionManager.RequestNavigate("ContentRegion");
+                        //regionManager.Regions["SyutsouModule"].Add(Views.LoginView);
+                        //var moduleManager = ServiceLocator.Current.GetInstance<IModuleManager>();
+
+                        var container = ServiceLocator.Current.GetInstance<IUnityContainer>();
                         var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-                        regionManager.Regions["SyutsouModule"].Add(Views.LoginView);
+                        //var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
+
+
+                       
 
                         Menu menu = Menu.祖训;
                         if (Enum.TryParse(str, out menu))
