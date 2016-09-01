@@ -83,6 +83,8 @@ namespace ZQ.PrismUnityApp
             this.ModuleCatalog.AddModule(syutsouModule);
             this.ModuleCatalog.AddModule(settingsModule);
             this.ModuleCatalog.AddModule(aboutModule);
+
+            
         }
     }
 }

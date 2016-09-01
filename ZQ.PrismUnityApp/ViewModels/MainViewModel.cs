@@ -21,6 +21,7 @@ namespace ZQ.PrismUnityApp.ViewModels
     public class MainViewModel : BindableBase
     {
         private string _title = "族谱 APP";
+
         public string Title
         {
             get { return _title; }
@@ -39,11 +40,8 @@ namespace ZQ.PrismUnityApp.ViewModels
                         //var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
                         //regionManager.RequestNavigate("ContentRegion");
                         //regionManager.Regions["SyutsouModule"].Add(Views.LoginView);
-                        //var moduleManager = ServiceLocator.Current.GetInstance<IModuleManager>();
-
-                        var container = ServiceLocator.Current.GetInstance<IUnityContainer>();
-                        var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-                       
+                        //var container = ServiceLocator.Current.GetInstance<IUnityContainer>();
+                        //var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
 
                         Menu menu = Menu.祖训;
                         if (Enum.TryParse(str, out menu))
@@ -51,16 +49,12 @@ namespace ZQ.PrismUnityApp.ViewModels
                             switch (menu)
                             {
                                 case Menu.祖训:
-                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.Guidance.Views.MainView));
                                     break;
                                 case Menu.世祖:
-                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.Syutsou.Views.MainView));
                                     break;
                                 case Menu.设置:
-                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.Settings.Views.MainView));
                                     break;
                                 case Menu.关于:
-                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.About.Views.MainView));
                                     break;
                                 default:
                                     return;
@@ -76,9 +70,18 @@ namespace ZQ.PrismUnityApp.ViewModels
         }
 
 
-        
 
+        IModuleManager moduleManager;
         public MainViewModel()
+        {
+            this.moduleManager = ServiceLocator.Current.GetInstance<IModuleManager>();
+            this.moduleManager.ModuleDownloadProgressChanged += moduleManager_ModuleDownloadProgressChanged;
+            this.moduleManager.LoadModuleCompleted += moduleManager_LoadModuleCompleted;
+        }
+        void moduleManager_ModuleDownloadProgressChanged(object sender, ModuleDownloadProgressChangedEventArgs e)
+        {
+        }
+        void moduleManager_LoadModuleCompleted(object sender, LoadModuleCompletedEventArgs e)
         {
         }
     }
