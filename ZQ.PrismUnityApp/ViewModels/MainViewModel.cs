@@ -43,9 +43,6 @@ namespace ZQ.PrismUnityApp.ViewModels
 
                         var container = ServiceLocator.Current.GetInstance<IUnityContainer>();
                         var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-                        //var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-
-
                        
 
                         Menu menu = Menu.祖训;
@@ -54,12 +51,16 @@ namespace ZQ.PrismUnityApp.ViewModels
                             switch (menu)
                             {
                                 case Menu.祖训:
+                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.Guidance.Views.MainView));
                                     break;
                                 case Menu.世祖:
+                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.Syutsou.Views.MainView));
                                     break;
                                 case Menu.设置:
+                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.Settings.Views.MainView));
                                     break;
                                 case Menu.关于:
+                                    regionManager.Regions["ContentRegion"].Activate(typeof(Module.About.Views.MainView));
                                     break;
                                 default:
                                     return;
