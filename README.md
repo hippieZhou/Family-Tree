@@ -1,5 +1,6 @@
 # Family-Tree(Prism Tips)
 
+
 ## 1. 框架搭建
 ### 1.1 安装 prism 包（通过NuGet Packages 管理器来安装prism6 程序包）
 ### 1.2 App->Bootstrapper->Shell
@@ -172,11 +173,19 @@ public class SettingsModule : IModule
 }
 ```
 
-## 2. 模块注册
-模块注册有多种方式，典型的注册方式有两种（从目前个人接触的来看，：））
-### 2.1 基于配置文件的注册方式
 
-### 2.2 基于代码的注册方式
+## 2. 模块注册
+模块注册有多种方式，这里我简要汇总一下（从目前个人接触的来看，：））
+### 2.1 在代码中注册模块
+
+### 2.2 通过XAML文件注册模块
+
+### 2.3 通过配置文件注册模块
+
+### 2.4 在文件目录中查找模块来进行注册
+
+参考链接：
+[prism 4 模块配置 管理](http://www.mamicode.com/info-detail-1116983.html)
 
 
 ## 3. 模块切换
@@ -205,5 +214,5 @@ ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<Events>().Publis
 需要说明的是，关于通过事件聚合器来进行事件的收发与订阅是可以全局使用。对于整个项目工程来说，任何一个模块中只要订阅了对应的事件，都可以收到全局任何一个模块中发布的事件。
 
 
-## 系统日志
+## 5. 系统日志
 
