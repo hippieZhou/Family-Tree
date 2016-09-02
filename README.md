@@ -156,11 +156,25 @@ public class MainViewModel : BindableBase
 }
 ```
 各个子模块进行注册
-由于每个模块的注册方法都类似，代码也基本相同
-
-
-### 1.3 注册模块
+由于每个模块的注册方法都类似，代码也基本相同，这里简单列出设置模块的示例代码：
+```C#
+public class SettingsModule : IModule
+{
+    IRegionManager _regionManager;
+    public SettingsModule(RegionManager regionManager)
+    {
+        _regionManager = regionManager;
+    }
+    public void Initialize()
+    {
+        _regionManager.RegisterViewWithRegion("MainRegion", typeof(Views.MainView));
+    }
+}
+```
 
 ## 2. 模块注册
+模块注册有多种方式，典型的注册方式有两种（从目前个人接触的来看，：））
+### 2.1 基于配置文件的注册方式
+### 2.2 基于代码的注册方式
 ## 3. 模块切换
 ## 4. 事件通知
