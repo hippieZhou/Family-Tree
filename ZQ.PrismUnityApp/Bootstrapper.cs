@@ -52,57 +52,65 @@ namespace ZQ.PrismUnityApp
             Application.Current.MainWindow.Show();
         }
 
-        protected override void ConfigureModuleCatalog()
-        {
-            #region 基于代码方式的模块加载方法
-            var typeGuidance = typeof(Module.Guidance.GuidanceModule);
-            var guidanceModule = new ModuleInfo()
-            {
-                ModuleName = typeGuidance.Name,
-                ModuleType = typeGuidance.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.WhenAvailable
-            };
+        #region MyRegion
 
-            var typeSyutsou = typeof(Module.Syutsou.SyutsouModule);
-            var syutsouModule = new ModuleInfo()
-            {
-                ModuleName = typeSyutsou.Name,
-                ModuleType = typeSyutsou.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.WhenAvailable
-            };
+         //protected override void ConfigureModuleCatalog()
+        //{
+        //    #region 基于代码方式的模块加载方法
+        //    var typeGuidance = typeof(Module.Guidance.GuidanceModule);
+        //    var guidanceModule = new ModuleInfo()
+        //    {
+        //        ModuleName = typeGuidance.Name,
+        //        ModuleType = typeGuidance.AssemblyQualifiedName,
+        //        InitializationMode = InitializationMode.WhenAvailable
+        //    };
 
-            var typeSettings = typeof(Module.Settings.SettingsModule);
-            var settingsModule = new ModuleInfo()
-            {
-                ModuleName = typeSettings.Name,
-                ModuleType = typeSettings.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.WhenAvailable
-            };
+        //    var typeSyutsou = typeof(Module.Syutsou.SyutsouModule);
+        //    var syutsouModule = new ModuleInfo()
+        //    {
+        //        ModuleName = typeSyutsou.Name,
+        //        ModuleType = typeSyutsou.AssemblyQualifiedName,
+        //        InitializationMode = InitializationMode.WhenAvailable
+        //    };
 
-            var typeAbout = typeof(Module.About.AboutModule);
-            var aboutModule = new ModuleInfo()
-            {
-                ModuleName = typeAbout.Name,
-                ModuleType = typeAbout.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.WhenAvailable
-            };
+        //    var typeSettings = typeof(Module.Settings.SettingsModule);
+        //    var settingsModule = new ModuleInfo()
+        //    {
+        //        ModuleName = typeSettings.Name,
+        //        ModuleType = typeSettings.AssemblyQualifiedName,
+        //        InitializationMode = InitializationMode.WhenAvailable
+        //    };
 
-            this.ModuleCatalog.AddModule(guidanceModule);
-            this.ModuleCatalog.AddModule(syutsouModule);
-            this.ModuleCatalog.AddModule(settingsModule);
-            this.ModuleCatalog.AddModule(aboutModule);
+        //    var typeAbout = typeof(Module.About.AboutModule);
+        //    var aboutModule = new ModuleInfo()
+        //    {
+        //        ModuleName = typeAbout.Name,
+        //        ModuleType = typeAbout.AssemblyQualifiedName,
+        //        InitializationMode = InitializationMode.WhenAvailable
+        //    };
 
-            #endregion
-        }
+        //    this.ModuleCatalog.AddModule(guidanceModule);
+        //    this.ModuleCatalog.AddModule(syutsouModule);
+        //    this.ModuleCatalog.AddModule(settingsModule);
+        //    this.ModuleCatalog.AddModule(aboutModule);
+
+        //    #endregion
+        //}
+
+	#endregion
+
+      
 
         /// <summary>
-        /// 创建基于配置文件的模块目录
+        /// 
         /// </summary>
         /// <returns></returns>
-        //protected override IModuleCatalog CreateModuleCatalog()
-        //{
-        //    return new ConfigurationModuleCatalog();
-        //}
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            //创建基于配置文件的模块目录
+            //return new ConfigurationModuleCatalog();
+            return new DirectoryModuleCatalog() { ModulePath = @"Modules" };
+        }
 
 
         /// <summary>

@@ -10,6 +10,7 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     Title="{Binding Title}" 
     MinHeight="400" MinWidth="600"
+    Height="400" Width="600"
     MaxHeight="400" MaxWidth="600">
     <Window.Resources>
         <sys:String x:Key="MainRegion">MainRegion</sys:String>
@@ -32,6 +33,6 @@
                 <RadioButton GroupName="rb_Menu" Content="关于" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
             </StackPanel>
         </Grid>
-        <TabControl SelectedIndex="{Binding ModuleIndex}" Grid.Column="1" prism:RegionManager.RegionName="{StaticResource MainRegion}" />
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{StaticResource MainRegion}" />
     </Grid>
 </Window>
