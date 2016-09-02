@@ -44,13 +44,11 @@ namespace ZQ.PrismUnityApp.ViewModels
                         {
                             switch (menu)
                             {
-                                case Menu.祖训:
-                                    break;
-                                case Menu.世祖:
-                                    break;
                                 case Menu.设置:
+                                    this.regionManager.RequestNavigate("MainRegion", "MainView");
                                     break;
                                 case Menu.关于:
+                                    this.regionManager.RequestNavigate("MainRegion", "MainView");
                                     break;
                                 default:
                                     return;

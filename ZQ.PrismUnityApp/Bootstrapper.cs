@@ -97,19 +97,16 @@ namespace ZQ.PrismUnityApp
         //    #endregion
         //}
 
-	#endregion
+	    #endregion
 
       
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         protected override IModuleCatalog CreateModuleCatalog()
         {
             //创建基于配置文件的模块目录
-            //return new ConfigurationModuleCatalog();
-            return new DirectoryModuleCatalog() { ModulePath = @"Modules" };
+            return new ConfigurationModuleCatalog();
+
+            //通过目录文件的方式来加载模块
+            //return new DirectoryModuleCatalog() { ModulePath = @"Modules" };
         }
 
 
@@ -117,10 +114,10 @@ namespace ZQ.PrismUnityApp
         /// 创建基于配置文件的依赖注入容器
         /// </summary>
         /// <returns></returns>
-        protected override IUnityContainer CreateContainer()
-        {
-            return base.CreateContainer();
-        }
+        //protected override IUnityContainer CreateContainer()
+        //{
+        //    return base.CreateContainer();
+        //}
 
         /// <summary>
         /// 获取全局的一个日志处理对象
