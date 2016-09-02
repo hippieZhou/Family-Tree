@@ -180,6 +180,10 @@ public class SettingsModule : IModule
 
 
 ## 3. 模块切换
+模块切换有多种方式，依据个人能力，这里我做一个简单汇总，后期会陆续更新
+### 3.1 请求页面跳转
+### 3.2 动态加载模块
+### 3.3 通过事件聚合器来进行模块更新
 
 
 ## 4. 事件通知
@@ -199,3 +203,7 @@ ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<Events>().Subscr
 ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<Events>().Publish(true);
 ```
 需要说明的是，关于通过事件聚合器来进行事件的收发与订阅是可以全局使用。对于整个项目工程来说，任何一个模块中只要订阅了对应的事件，都可以收到全局任何一个模块中发布的事件。
+
+
+## 系统日志
+
