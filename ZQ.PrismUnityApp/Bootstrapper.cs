@@ -4,11 +4,23 @@ using ZQ.PrismUnityApp.Views;
 using System.Windows;
 using ZQ.PrismUnityApp.ViewModels;
 using Prism.Modularity;
+using Prism.Events;
 
 namespace ZQ.PrismUnityApp
 {
     class Bootstrapper : UnityBootstrapper
     {
+        /// <summary>
+        /// 获取全局的事件聚合器
+        /// </summary>
+        public IEventAggregator EventAggregator
+        {
+            get
+            {
+                return this.Container.TryResolve<IEventAggregator>();
+            }
+        }
+
         protected override DependencyObject CreateShell()
         {
             var loginView = Container.TryResolve<LoginView>();
@@ -42,8 +54,7 @@ namespace ZQ.PrismUnityApp
 
         protected override void ConfigureModuleCatalog()
         {
-            #region 模块初始化（按需加载，使用时需要手动进行加载）
-
+            #region 基于代码方式的模块加载方法
             var typeGuidance = typeof(Module.Guidance.GuidanceModule);
             var guidanceModule = new ModuleInfo()
             {
@@ -59,7 +70,6 @@ namespace ZQ.PrismUnityApp
                 ModuleType = typeSyutsou.AssemblyQualifiedName,
                 InitializationMode = InitializationMode.WhenAvailable
             };
-
 
             var typeSettings = typeof(Module.Settings.SettingsModule);
             var settingsModule = new ModuleInfo()
@@ -77,14 +87,41 @@ namespace ZQ.PrismUnityApp
                 InitializationMode = InitializationMode.WhenAvailable
             };
 
-            #endregion
-
             this.ModuleCatalog.AddModule(guidanceModule);
             this.ModuleCatalog.AddModule(syutsouModule);
             this.ModuleCatalog.AddModule(settingsModule);
             this.ModuleCatalog.AddModule(aboutModule);
 
-            
+            #endregion
         }
+
+        /// <summary>
+        /// 创建基于配置文件的模块目录
+        /// </summary>
+        /// <returns></returns>
+        //protected override IModuleCatalog CreateModuleCatalog()
+        //{
+        //    return new ConfigurationModuleCatalog();
+        //}
+
+
+        /// <summary>
+        /// 创建基于配置文件的依赖注入容器
+        /// </summary>
+        /// <returns></returns>
+        protected override IUnityContainer CreateContainer()
+        {
+            return base.CreateContainer();
+        }
+
+        /// <summary>
+        /// 获取全局的一个日志处理对象
+        /// </summary>
+        /// <returns></returns>
+        protected override Prism.Logging.ILoggerFacade CreateLogger()
+        {
+            return base.CreateLogger();
+        }
+
     }
 }

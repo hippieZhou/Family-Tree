@@ -14,7 +14,7 @@ namespace ZQ.Module.Syutsou
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(Views.MainView));
+            _regionManager.RegisterViewWithRegion("MainRegion", typeof(Views.MainView));
         }
     }
 }

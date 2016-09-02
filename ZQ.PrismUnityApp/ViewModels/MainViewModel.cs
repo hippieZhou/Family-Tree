@@ -18,15 +18,26 @@ namespace ZQ.PrismUnityApp.ViewModels
         设置 = 0x03,
         关于 = 0x04
     };
+
     public class MainViewModel : BindableBase
     {
-        private string _title = "族谱 APP";
+        private string _title = "Prism APP";
 
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
+        
         }
+
+        private int _moduleIndex;
+
+        public int ModuleIndex
+        {
+            get { return _moduleIndex; }
+            set { SetProperty(ref _moduleIndex, value); }
+        }
+
 
         private DelegateCommand<string> _chooseMenuCmd;
 
@@ -36,34 +47,27 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
-                        //var obj = ServiceLocator.Current.GetInstance<IModuleCatalog>();
-                        //var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-                        //regionManager.RequestNavigate("ContentRegion");
-                        //regionManager.Regions["SyutsouModule"].Add(Views.LoginView);
-                        //var container = ServiceLocator.Current.GetInstance<IUnityContainer>();
-                        //var regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-
-                        Menu menu = Menu.祖训;
+                        Menu menu = Menu.关于;
                         if (Enum.TryParse(str, out menu))
                         {
                             switch (menu)
                             {
                                 case Menu.祖训:
+                                    this.ModuleIndex = 0;
                                     break;
                                 case Menu.世祖:
+                                    this.ModuleIndex = 1;
                                     break;
                                 case Menu.设置:
+                                    this.ModuleIndex = 2;
                                     break;
                                 case Menu.关于:
+                                    this.ModuleIndex = 3;
                                     break;
                                 default:
                                     return;
                             }
                             Debug.WriteLine(menu);
-                        }
-                        else
-                        {
-                            return;
                         }
                     }));
             }
