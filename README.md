@@ -183,3 +183,19 @@ public class SettingsModule : IModule
 
 
 ## 4. 事件通知
+#### 4.1 定义相应类型的类，使该类继承自 PubSubEvent<T> 即可（参数T为我们需要传递的实际数据类型）。
+```C#
+public class Events:PubSubEvent<bool>{}
+```
+### 4.2 获取全局事件聚合器，进行事件的发布与订阅
+```C#
+//事件订阅
+ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<Events>().Subscribe((b)=>
+{
+	//处理相关逻辑
+});
+
+//事件发布
+ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<Events>().Publish(true);
+```
+需要说明的是，关于通过事件聚合器来进行事件的收发与订阅是可以全局使用。对于整个项目工程来说，任何一个模块中只要订阅了对应的事件，都可以收到全局任何一个模块中发布的事件。
