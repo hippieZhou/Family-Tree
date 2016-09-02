@@ -191,7 +191,7 @@ public class SettingsModule : IModule
 ```C#
 public class Events:PubSubEvent<bool>{}
 ```
-### 4.2 获取全局事件聚合器，进行事件的发布与订阅
+### 4.2 获取全局事件聚合器，进行事件的发布与订阅（发布-订阅模式，可以类比Mvvmlight中的Messenger机制）
 ```C#
 //事件订阅
 ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<Events>().Subscribe((b)=>
