@@ -98,6 +98,7 @@ class Bootstrapper : UnityBootstrapper
 ```
 创建主Shell对应的ViewModel
 ```C#
+[Flags]
 public enum Menu
 {
     祖训 = 0x01,
