@@ -11,6 +11,7 @@ namespace ZQ.PrismUnityApp.ViewModels
 {
     //http://www.codeproject.com/Articles/165370/Creating-View-Switching-Applications-with-Prism
     //http://stackoverflow.com/questions/24176964/wpf-prism-mvvm-changing-modules-views
+    [Flags]
     public enum Menu
     {
         祖训 = 0x01,
