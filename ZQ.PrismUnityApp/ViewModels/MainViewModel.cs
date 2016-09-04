@@ -22,7 +22,8 @@ namespace ZQ.PrismUnityApp.ViewModels
 
     public class MainViewModel : BindableBase
     {
-
+        public IRegionManager regionManager => ServiceLocator.Current.GetInstance<IRegionManager>();
+        public IModuleManager moduleManager => ServiceLocator.Current.GetInstance<IModuleManager>();
 
         private string _title = "Prism APP";
 
@@ -40,6 +41,7 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
+                        var obj = this.regionManager;
                         Menu menu = Menu.关于;
                         if (Enum.TryParse(str, out menu))
                         {
@@ -62,13 +64,10 @@ namespace ZQ.PrismUnityApp.ViewModels
 
 
 
-        IModuleManager moduleManager;
-        IRegionManager regionManager;
+
+
         public MainViewModel()
         {
-            regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-
-            this.moduleManager = ServiceLocator.Current.GetInstance<IModuleManager>();
             this.moduleManager.ModuleDownloadProgressChanged += moduleManager_ModuleDownloadProgressChanged;
             this.moduleManager.LoadModuleCompleted += moduleManager_LoadModuleCompleted;
         }
