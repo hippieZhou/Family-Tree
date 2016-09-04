@@ -54,7 +54,7 @@ namespace ZQ.PrismUnityApp
 
         #region MyRegion
 
-         //protected override void ConfigureModuleCatalog()
+        //protected override void ConfigureModuleCatalog()
         //{
         //    #region 基于代码方式的模块加载方法
         //    var typeGuidance = typeof(Module.Guidance.GuidanceModule);
@@ -97,9 +97,9 @@ namespace ZQ.PrismUnityApp
         //    #endregion
         //}
 
-	    #endregion
+        #endregion
 
-      
+
         protected override IModuleCatalog CreateModuleCatalog()
         {
             //创建基于配置文件的模块目录
@@ -114,10 +114,10 @@ namespace ZQ.PrismUnityApp
         /// 创建基于配置文件的依赖注入容器
         /// </summary>
         /// <returns></returns>
-        //protected override IUnityContainer CreateContainer()
-        //{
-        //    return base.CreateContainer();
-        //}
+        protected override IUnityContainer CreateContainer()
+        {
+            return base.CreateContainer();
+        }
 
         /// <summary>
         /// 获取全局的一个日志处理对象

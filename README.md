@@ -178,12 +178,90 @@ public class SettingsModule : IModule
 ## 2. 模块注册
 模块注册有多种方式，这里我简要汇总一下（从目前个人接触的来看，：））
 ### 2.1 在代码中注册模块
+```C#
+protected override void ConfigureModuleCatalog()
+{
+    #region 基于代码方式的模块加载方法
+    var typeGuidance = typeof(Module.Guidance.GuidanceModule);
+    var guidanceModule = new ModuleInfo()
+    {
+        ModuleName = typeGuidance.Name,
+        ModuleType = typeGuidance.AssemblyQualifiedName,
+        InitializationMode = InitializationMode.WhenAvailable
+    };
 
+    var typeSyutsou = typeof(Module.Syutsou.SyutsouModule);
+    var syutsouModule = new ModuleInfo()
+    {
+        ModuleName = typeSyutsou.Name,
+        ModuleType = typeSyutsou.AssemblyQualifiedName,
+        InitializationMode = InitializationMode.WhenAvailable
+    };
+
+    var typeSettings = typeof(Module.Settings.SettingsModule);
+    var settingsModule = new ModuleInfo()
+    {
+        ModuleName = typeSettings.Name,
+        ModuleType = typeSettings.AssemblyQualifiedName,
+        InitializationMode = InitializationMode.WhenAvailable
+    };
+
+    var typeAbout = typeof(Module.About.AboutModule);
+    var aboutModule = new ModuleInfo()
+    {
+        ModuleName = typeAbout.Name,
+        ModuleType = typeAbout.AssemblyQualifiedName,
+        InitializationMode = InitializationMode.WhenAvailable
+    };
+
+    this.ModuleCatalog.AddModule(guidanceModule);
+    this.ModuleCatalog.AddModule(syutsouModule);
+    this.ModuleCatalog.AddModule(settingsModule);
+    this.ModuleCatalog.AddModule(aboutModule);
+
+    #endregion
+}
+```
 ### 2.2 通过XAML文件注册模块
 
 ### 2.3 通过配置文件注册模块
+```XML
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="modules" type="Prism.Modularity.ModulesConfigurationSection, Prism.Wpf" />
+  </configSections>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.1"/>
+    </startup>
+
+  <modules>
+    <module assemblyFile="ZQ.Module.Guidance.dll" moduleType="ZQ.Module.Guidance.GuidanceModule, ZQ.Module.Guidance, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" moduleName="GuidanceModule" startupLoaded="true" />
+    <module assemblyFile="ZQ.Module.Syutsou.dll" moduleType="ZQ.Module.Syutsou.SyutsouModule, ZQ.Module.Syutsou, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" moduleName="SyutsouModule" startupLoaded="true" />
+    <module assemblyFile="ZQ.Module.Settings.dll" moduleType="ZQ.Module.Settings.SettingsModule, ZQ.Module.Settings" moduleName="SettingsModule" startupLoaded="true" />
+    <module assemblyFile="ZQ.Module.About.dll" moduleType="ZQ.Module.About.AboutModule, ZQ.Module.About" moduleName="AboutModule" startupLoaded="true" />
+  </modules>
+  
+</configuration>
+```
+重写CreateModuleCatalog函数
+```C#
+protected override IModuleCatalog CreateModuleCatalog()
+{
+    //创建基于配置文件的模块目录
+    return new ConfigurationModuleCatalog();
+}
+```
 
 ### 2.4 在文件目录中查找模块来进行注册
+将各个模块生成的dll放到一个统一的目录文件夹中，然后重写CreateModuleCatalog函数
+```C#
+protected override IModuleCatalog CreateModuleCatalog()
+{
+    //通过目录文件的方式来加载模块
+    return new DirectoryModuleCatalog() { ModulePath = @"Modules" };
+}
+```
 
 参考链接：
 [prism 4 模块配置 管理](http://www.mamicode.com/info-detail-1116983.html)

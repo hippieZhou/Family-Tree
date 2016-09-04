@@ -15,7 +15,7 @@
     <Window.Resources>
         <sys:String x:Key="MainRegion">MainRegion</sys:String>
     </Window.Resources>
-    
+
     <Window.DataContext>
         <vm:MainViewModel xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"/>
     </Window.DataContext>
@@ -27,12 +27,12 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="AliceBlue">
             <StackPanel VerticalAlignment="Bottom">
-                <RadioButton IsChecked="True" GroupName="rb_Menu" Content="祖训" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="世祖" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="设置" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="关于" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton IsChecked="True" GroupName="rb_Menu" Content="祖训" Tag="0" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="世祖" Tag="1" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="设置" Tag="2" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="关于" Tag="3" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
             </StackPanel>
         </Grid>
-        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{StaticResource MainRegion}" />
+        <TabControl Grid.Column="1" SelectedIndex="{Binding SelectedIndex}" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
     </Grid>
 </Window>

@@ -26,45 +26,36 @@ namespace ZQ.PrismUnityApp.ViewModels
         public IModuleManager moduleManager => ServiceLocator.Current.GetInstance<IModuleManager>();
 
         private string _title = "Prism APP";
-
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
 
-        private DelegateCommand<string> _chooseMenuCmd;
+        private int _selectedIndex;
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set { SetProperty(ref _selectedIndex, value); }
+        }
 
+
+        private DelegateCommand<string> _chooseMenuCmd;
         public DelegateCommand<string> ChooseMenuCmd
         {
             get
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
-                        var obj = this.regionManager;
-                        Menu menu = Menu.关于;
-                        if (Enum.TryParse(str, out menu))
+                        var index = int.Parse(str);
+                        if (this.SelectedIndex != index)
                         {
-                            switch (menu)
-                            {
-                                case Menu.设置:
-                                    this.regionManager.RequestNavigate("MainRegion", "MainView");
-                                    break;
-                                case Menu.关于:
-                                    this.regionManager.RequestNavigate("MainRegion", "MainView");
-                                    break;
-                                default:
-                                    return;
-                            }
-                            Debug.WriteLine(menu);
+                            this.SelectedIndex = index;
+                            Debug.WriteLine(this.SelectedIndex);
                         }
                     }));
             }
         }
-
-
-
-
 
         public MainViewModel()
         {
