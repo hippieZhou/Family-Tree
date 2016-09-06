@@ -30,6 +30,6 @@
                 <RadioButton GroupName="rb_Menu" Content="关于" Tag="3" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
             </StackPanel>
         </Grid>
-        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MainRegion"/>
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
     </Grid>
 </Window>
