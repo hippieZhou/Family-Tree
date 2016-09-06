@@ -57,18 +57,27 @@ namespace ZQ.PrismUnityApp.ViewModels
                         Menu menu;
                         if (Enum.TryParse(str, out menu))
                         {
-                            switch (menu)
+                            if (this.CurrentMenu != menu)
                             {
-                                case Menu.祖训:
-                                    break;
-                                case Menu.世祖:
-                                    break;
-                                case Menu.设置:
-                                    break;
-                                case Menu.关于:
-                                    break;
-                                default:
-                                    return;
+                                this.CurrentMenu = menu;
+                                Debug.WriteLine(menu);
+                                switch (menu)
+                                {
+                                    case Menu.祖训:
+                                        ((ModuleManager)moduleManager).LoadModule("ZQ.Module.Guidance");
+                                        break;
+                                    case Menu.世祖:
+                                         ((ModuleManager)moduleManager).LoadModule("ZQ.Module.Syutsou");
+                                        break;
+                                    case Menu.设置:
+                                         ((ModuleManager)moduleManager).LoadModule("ZQ.Module.Settings");
+                                        break;
+                                    case Menu.关于:
+                                         ((ModuleManager)moduleManager).LoadModule("ZQ.Module.About");
+                                        break;
+                                    default:
+                                        return;
+                                }
                             }
                         }
                     }));

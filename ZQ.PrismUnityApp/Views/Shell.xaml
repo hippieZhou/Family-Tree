@@ -5,7 +5,6 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
     xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
     x:Class="ZQ.PrismUnityApp.Views.Shell"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     WindowStartupLocation="CenterScreen"
     prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"
@@ -13,9 +12,6 @@
     MinHeight="400" MinWidth="600"
     Height="400" Width="600"
     MaxHeight="400" MaxWidth="600">
-    <Window.Resources>
-        <sys:String x:Key="MainRegion">MainRegion</sys:String>
-    </Window.Resources>
 
     <Window.DataContext>
         <vm:ShellViewModel/>
@@ -34,6 +30,6 @@
                 <RadioButton GroupName="rb_Menu" Content="关于" Tag="3" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
             </StackPanel>
         </Grid>
-        <TabControl Grid.Column="1" SelectedIndex="{Binding SelectedIndex}" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
     </Grid>
 </Window>

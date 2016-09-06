@@ -9,7 +9,7 @@ namespace ZQ.Module.Settings
     {
         IRegionManager _regionManager;
 
-        public SettingsModule(RegionManager regionManager)
+        public SettingsModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }

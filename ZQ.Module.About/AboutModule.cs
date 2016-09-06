@@ -7,7 +7,7 @@ namespace ZQ.Module.About
     {
         IRegionManager _regionManager;
 
-        public AboutModule(RegionManager regionManager)
+        public AboutModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }

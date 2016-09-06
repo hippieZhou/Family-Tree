@@ -52,62 +52,37 @@ namespace ZQ.PrismUnityApp
             Application.Current.MainWindow.Show();
         }
 
-        #region MyRegion
+        #region 基于代码方式加载模块
 
-        //protected override void ConfigureModuleCatalog()
-        //{
-        //    #region 基于代码方式的模块加载方法
-        //    var typeGuidance = typeof(Module.Guidance.GuidanceModule);
-        //    var guidanceModule = new ModuleInfo()
-        //    {
-        //        ModuleName = typeGuidance.Name,
-        //        ModuleType = typeGuidance.AssemblyQualifiedName,
-        //        InitializationMode = InitializationMode.WhenAvailable
-        //    };
+        protected override void ConfigureModuleCatalog()
+        {
+            var typeGuidance = typeof(Module.Guidance.GuidanceModule);
+            var typeSyutsou = typeof(Module.Syutsou.SyutsouModule);
+            var typeSettings = typeof(Module.Settings.SettingsModule);
+            var typeAbout = typeof(Module.About.AboutModule);
 
-        //    var typeSyutsou = typeof(Module.Syutsou.SyutsouModule);
-        //    var syutsouModule = new ModuleInfo()
-        //    {
-        //        ModuleName = typeSyutsou.Name,
-        //        ModuleType = typeSyutsou.AssemblyQualifiedName,
-        //        InitializationMode = InitializationMode.WhenAvailable
-        //    };
-
-        //    var typeSettings = typeof(Module.Settings.SettingsModule);
-        //    var settingsModule = new ModuleInfo()
-        //    {
-        //        ModuleName = typeSettings.Name,
-        //        ModuleType = typeSettings.AssemblyQualifiedName,
-        //        InitializationMode = InitializationMode.WhenAvailable
-        //    };
-
-        //    var typeAbout = typeof(Module.About.AboutModule);
-        //    var aboutModule = new ModuleInfo()
-        //    {
-        //        ModuleName = typeAbout.Name,
-        //        ModuleType = typeAbout.AssemblyQualifiedName,
-        //        InitializationMode = InitializationMode.WhenAvailable
-        //    };
-
-        //    this.ModuleCatalog.AddModule(guidanceModule);
-        //    this.ModuleCatalog.AddModule(syutsouModule);
-        //    this.ModuleCatalog.AddModule(settingsModule);
-        //    this.ModuleCatalog.AddModule(aboutModule);
-
-        //    #endregion
-        //}
+            //按需加载模块
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeGuidance.Name, typeGuidance.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeSyutsou.Name, typeSyutsou.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeSettings.Name, typeSettings.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeAbout.Name, typeAbout.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
+        }
 
         #endregion
 
 
-        protected override IModuleCatalog CreateModuleCatalog()
-        {
-            //创建基于配置文件的模块目录
-            return new ConfigurationModuleCatalog();
+        /// <summary>
+        /// 基于配置方式加载模块
+        /// </summary>
+        /// <returns></returns>
+        //protected override IModuleCatalog CreateModuleCatalog()
+        //{
+        //    //创建基于配置文件的模块目录
+        //    //return new ConfigurationModuleCatalog();
 
-            //通过目录文件的方式来加载模块
-            //return new DirectoryModuleCatalog() { ModulePath = @"Modules" };
-        }
+        //    //通过目录文件的方式来加载模块
+        //    //return new DirectoryModuleCatalog() { ModulePath = @"Modules" };
+        //}
 
 
         /// <summary>

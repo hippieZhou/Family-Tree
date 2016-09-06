@@ -7,7 +7,7 @@ namespace ZQ.Module.Guidance
     {
         IRegionManager _regionManager;
 
-        public GuidanceModule(RegionManager regionManager)
+        public GuidanceModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
