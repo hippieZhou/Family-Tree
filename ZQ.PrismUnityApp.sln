@@ -19,6 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZQ.Module.Settings", "ZQ.Mo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6666CE0-C1D7-4165-B721-84024EE9F27A}"
 	ProjectSection(SolutionItems) = preProject
+		PowerWriter.md = PowerWriter.md
 		README.md = README.md
 		ShowDifferentModuleInSameRegion.md = ShowDifferentModuleInSameRegion.md
 	EndProjectSection
