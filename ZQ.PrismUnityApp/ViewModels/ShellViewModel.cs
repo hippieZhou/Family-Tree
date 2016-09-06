@@ -20,7 +20,7 @@ namespace ZQ.PrismUnityApp.ViewModels
         关于 = 0x04
     };
 
-    public class MainViewModel : BindableBase
+    public class ShellViewModel : BindableBase
     {
         public IRegionManager regionManager 
         {
@@ -31,6 +31,7 @@ namespace ZQ.PrismUnityApp.ViewModels
             get { return ServiceLocator.Current.GetInstance<IModuleManager>(); }
         }
 
+
         private string _title = "Prism APP";
         public string Title
         {
@@ -38,13 +39,13 @@ namespace ZQ.PrismUnityApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        private int _selectedIndex;
-        public int SelectedIndex
+        
+        private Menu _currentMenu;
+        public Menu CurrentMenu
         {
-            get { return _selectedIndex; }
-            set { SetProperty(ref _selectedIndex, value); }
+            get { return _currentMenu; }
+            set { SetProperty(ref _currentMenu, value); }
         }
-
 
         private DelegateCommand<string> _chooseMenuCmd;
         public DelegateCommand<string> ChooseMenuCmd
@@ -53,17 +54,28 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
-                        var index = int.Parse(str);
-                        if (this.SelectedIndex != index)
+                        Menu menu;
+                        if (Enum.TryParse(str, out menu))
                         {
-                            this.SelectedIndex = index;
-                            Debug.WriteLine(this.SelectedIndex);
+                            switch (menu)
+                            {
+                                case Menu.祖训:
+                                    break;
+                                case Menu.世祖:
+                                    break;
+                                case Menu.设置:
+                                    break;
+                                case Menu.关于:
+                                    break;
+                                default:
+                                    return;
+                            }
                         }
                     }));
             }
         }
 
-        public MainViewModel()
+        public ShellViewModel()
         {
             this.moduleManager.ModuleDownloadProgressChanged += moduleManager_ModuleDownloadProgressChanged;
             this.moduleManager.LoadModuleCompleted += moduleManager_LoadModuleCompleted;

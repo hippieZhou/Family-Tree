@@ -8,6 +8,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     WindowStartupLocation="CenterScreen"
     prism:ViewModelLocator.AutoWireViewModel="True"
+    xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"
     Title="{Binding Title}" 
     MinHeight="400" MinWidth="600"
     Height="400" Width="600"
@@ -17,7 +18,7 @@
     </Window.Resources>
 
     <Window.DataContext>
-        <vm:MainViewModel xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"/>
+        <vm:ShellViewModel/>
     </Window.DataContext>
 
     <Grid>
@@ -27,10 +28,10 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="AliceBlue">
             <StackPanel VerticalAlignment="Bottom">
-                <RadioButton IsChecked="True" GroupName="rb_Menu" Content="祖训" Tag="0" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="世祖" Tag="1" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="设置" Tag="2" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="关于" Tag="3" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton IsChecked="True" GroupName="rb_Menu" Content="祖训" Tag="0" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="世祖" Tag="1" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="设置" Tag="2" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton GroupName="rb_Menu" Content="关于" Tag="3" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
             </StackPanel>
         </Grid>
         <TabControl Grid.Column="1" SelectedIndex="{Binding SelectedIndex}" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
