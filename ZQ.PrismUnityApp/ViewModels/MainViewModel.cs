@@ -22,8 +22,14 @@ namespace ZQ.PrismUnityApp.ViewModels
 
     public class MainViewModel : BindableBase
     {
-        public IRegionManager regionManager => ServiceLocator.Current.GetInstance<IRegionManager>();
-        public IModuleManager moduleManager => ServiceLocator.Current.GetInstance<IModuleManager>();
+        public IRegionManager regionManager 
+        {
+            get { return ServiceLocator.Current.GetInstance<IRegionManager>(); }
+        }
+        public IModuleManager moduleManager
+        {
+            get { return ServiceLocator.Current.GetInstance<IModuleManager>(); }
+        }
 
         private string _title = "Prism APP";
         public string Title
