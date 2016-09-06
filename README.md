@@ -275,7 +275,7 @@ protected override IModuleCatalog CreateModuleCatalog()
 
 
 ## 4. 事件通知
-#### 4.1 定义相应类型的类，使该类继承自 PubSubEvent<T> 即可（参数T为我们需要传递的实际数据类型）。
+### 4.1 定义相应类型的类，使该类继承自 PubSubEvent<T> 即可（参数T为我们需要传递的实际数据类型）。
 ```C#
 public class Events:PubSubEvent<bool>{}
 ```
