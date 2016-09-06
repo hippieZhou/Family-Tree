@@ -13,13 +13,13 @@ namespace ZQ.PrismUnityApp
         /// <summary>
         /// 获取全局的事件聚合器
         /// </summary>
-        public IEventAggregator EventAggregator
-        {
-            get
-            {
-                return this.Container.TryResolve<IEventAggregator>();
-            }
-        }
+        //public IEventAggregator EventAggregator
+        //{
+        //    get
+        //    {
+        //        return this.Container.TryResolve<IEventAggregator>();
+        //    }
+        //}
 
         protected override DependencyObject CreateShell()
         {

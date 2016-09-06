@@ -6,6 +6,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 using System;
 using System.Diagnostics;
+using System.Windows;
 
 namespace ZQ.PrismUnityApp.ViewModels
 {
@@ -22,13 +23,17 @@ namespace ZQ.PrismUnityApp.ViewModels
 
     public class ShellViewModel : BindableBase
     {
-        public IRegionManager regionManager 
+        public string MainRegion
         {
-            get { return ServiceLocator.Current.GetInstance<IRegionManager>(); }
+            get { return Application.Current.Resources["MainRegion"].ToString(); }
         }
         public IModuleManager moduleManager
         {
             get { return ServiceLocator.Current.GetInstance<IModuleManager>(); }
+        }
+        public IRegionManager regionManager
+        {
+            get { return ServiceLocator.Current.GetInstance<IRegionManager>(); }
         }
 
 
@@ -64,16 +69,20 @@ namespace ZQ.PrismUnityApp.ViewModels
                                 switch (menu)
                                 {
                                     case Menu.祖训:
-                                        ((ModuleManager)moduleManager).LoadModule("ZQ.Module.Guidance");
+                                        this.moduleManager.LoadModule("GuidanceModule");
+                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Guidance.Views.MainView));
                                         break;
                                     case Menu.世祖:
-                                         ((ModuleManager)moduleManager).LoadModule("ZQ.Module.Syutsou");
+                                        this.moduleManager.LoadModule("SyutsouModule");
+                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Syutsou.Views.MainView));
                                         break;
                                     case Menu.设置:
-                                         ((ModuleManager)moduleManager).LoadModule("ZQ.Module.Settings");
+                                        this.moduleManager.LoadModule("SettingsModule");
+                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Settings.Views.MainView));
                                         break;
                                     case Menu.关于:
-                                         ((ModuleManager)moduleManager).LoadModule("ZQ.Module.About");
+                                        this.moduleManager.LoadModule("AboutModule");
+                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.About.Views.MainView));
                                         break;
                                     default:
                                         return;

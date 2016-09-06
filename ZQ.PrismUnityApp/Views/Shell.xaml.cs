@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Microsoft.Practices.Unity;
+using Prism.Regions;
+using System.Windows;
 
 namespace ZQ.PrismUnityApp.Views
 {
