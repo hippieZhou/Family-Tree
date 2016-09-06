@@ -49,6 +49,7 @@ namespace ZQ.PrismUnityApp
 
         protected override void InitializeShell()
         {
+            Application.Current.MainWindow = this.Shell as Window;
             Application.Current.MainWindow.Show();
         }
 
@@ -62,7 +63,7 @@ namespace ZQ.PrismUnityApp
             var typeAbout = typeof(Module.About.AboutModule);
 
             //按需加载模块
-            this.ModuleCatalog.AddModule(new ModuleInfo(typeGuidance.Name, typeGuidance.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeGuidance.Name, typeGuidance.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
             this.ModuleCatalog.AddModule(new ModuleInfo(typeSyutsou.Name, typeSyutsou.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
             this.ModuleCatalog.AddModule(new ModuleInfo(typeSettings.Name, typeSettings.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
             this.ModuleCatalog.AddModule(new ModuleInfo(typeAbout.Name, typeAbout.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });

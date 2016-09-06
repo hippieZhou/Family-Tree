@@ -59,6 +59,7 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
+                        var obj = this.regionManager.Regions;
                         Menu menu;
                         if (Enum.TryParse(str, out menu))
                         {
@@ -68,14 +69,19 @@ namespace ZQ.PrismUnityApp.ViewModels
                                 Debug.WriteLine(menu);
                                 switch (menu)
                                 {
-                                    case Menu.祖训:
-                                        this.moduleManager.LoadModule("GuidanceModule");
-                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Guidance.Views.MainView));
-                                        break;
-                                    case Menu.世祖:
-                                        this.moduleManager.LoadModule("SyutsouModule");
-                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Syutsou.Views.MainView));
-                                        break;
+                                    #region MyRegion
+
+                                    //case Menu.祖训:
+                                    //    this.moduleManager.LoadModule("GuidanceModule");
+                                    //    //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Guidance.Views.MainView));
+                                    //    break;
+                                    //case Menu.世祖:
+                                    //    this.moduleManager.LoadModule("SyutsouModule");
+                                    //    //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Syutsou.Views.MainView));
+                                    //    break;
+
+                                    #endregion
+
                                     case Menu.设置:
                                         this.moduleManager.LoadModule("SettingsModule");
                                         //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Settings.Views.MainView));
