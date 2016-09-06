@@ -7,28 +7,45 @@ namespace ZQ.PrismUnityApp.Commons
 {
     class ConfigurationManager
     {
-        public static object locker = new object();
+        #region 一种单例模式
 
-        private static ConfigurationManager _current;
-        public static ConfigurationManager Current
+        //public static object locker = new object();
+        //private static ConfigurationManager _current;
+        //public static ConfigurationManager Current
+        //{
+        //    get
+        //    {
+        //        if (_current == null)
+        //        {
+        //            lock (locker)
+        //            {
+        //                if (_current == null)
+        //                {
+        //                    _current = new ConfigurationManager();
+        //                }
+        //            }
+        //        }
+        //        return _current;
+        //    }
+        //}
+
+        //ConfigurationManager() { }
+
+        #endregion
+
+        #region 另一种单例模式
+
+        public ConfigurationManager() { }
+        private static readonly Lazy<ConfigurationManager> lazy = new Lazy<ConfigurationManager>(() => new ConfigurationManager());
+        public static ConfigurationManager Instance
         {
             get
             {
-                if (_current == null)
-                {
-                    lock (locker)
-                    {
-                        if (_current == null)
-                        {
-                            _current = new ConfigurationManager();
-                        }
-                    }
-                }
-                return _current;
+                return lazy.Value;
             }
         }
+        #endregion
 
-        ConfigurationManager() { }
 
         public List<ModuleInfo> GetModuleInfos()
         {
