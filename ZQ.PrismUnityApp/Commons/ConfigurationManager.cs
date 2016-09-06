@@ -34,8 +34,8 @@ namespace ZQ.PrismUnityApp.Commons
         #endregion
 
         #region 另一种单例模式
+        ConfigurationManager() { }
 
-        public ConfigurationManager() { }
         private static readonly Lazy<ConfigurationManager> lazy = new Lazy<ConfigurationManager>(() => new ConfigurationManager());
         public static ConfigurationManager Instance
         {
@@ -44,9 +44,10 @@ namespace ZQ.PrismUnityApp.Commons
                 return lazy.Value;
             }
         }
+
         #endregion
 
-        public List<ModuleInfo> GetModuleInfos()
+        public IList<ModuleInfo> GetModuleInfoList()
         {
             try
             {
