@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace ZQ.PrismUnityApp.Commons
 {
-    class ConfigurationManager
+    public class ConfigurationManager
     {
         #region 一种单例模式
 
@@ -45,7 +45,6 @@ namespace ZQ.PrismUnityApp.Commons
             }
         }
         #endregion
-
 
         public List<ModuleInfo> GetModuleInfos()
         {
