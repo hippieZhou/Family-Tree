@@ -59,14 +59,18 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
-                        var obj = this.regionManager.Regions;
+                        this.moduleManager.LoadModule("AboutModule");
+                        var st = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.About.Views.MainView).Name);
+
                         Menu menu;
                         if (Enum.TryParse(str, out menu))
                         {
                             if (this.CurrentMenu != menu)
                             {
                                 this.CurrentMenu = menu;
-                                Debug.WriteLine(menu);
+
+                                var obj = new object();
+
                                 switch (menu)
                                 {
                                     #region MyRegion
@@ -84,15 +88,18 @@ namespace ZQ.PrismUnityApp.ViewModels
 
                                     case Menu.设置:
                                         this.moduleManager.LoadModule("SettingsModule");
-                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Settings.Views.MainView));
+                                        obj = this.regionManager.Regions[this.MainRegion].GetView("MainView");
+                                        this.regionManager.Regions[this.MainRegion].Activate(obj);
                                         break;
                                     case Menu.关于:
                                         this.moduleManager.LoadModule("AboutModule");
-                                        //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.About.Views.MainView));
+                                        obj = this.regionManager.Regions[this.MainRegion].GetView("MainView");
+                                        this.regionManager.Regions[this.MainRegion].Activate(obj);
                                         break;
                                     default:
                                         return;
                                 }
+                                
                             }
                         }
                     }));

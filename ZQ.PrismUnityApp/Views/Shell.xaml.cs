@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 using Prism.Regions;
 using System.Windows;
 

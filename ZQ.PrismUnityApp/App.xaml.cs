@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using ZQ.PrismUnityApp.ViewModels;
+using ZQ.PrismUnityApp.Views;
 
 namespace ZQ.PrismUnityApp
 {
@@ -9,10 +11,23 @@ namespace ZQ.PrismUnityApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
+            var loginView = new LoginView();
+            //登录
+            if (loginView != null)
+            {
+                loginView.Show();
+                var loginVm = loginView.DataContext as LoginViewModel;
+                if (loginVm != null)
+                {
+                    loginVm.Validate += () =>
+                    {
+                        var bootstrapper = new Bootstrapper();
+                        bootstrapper.Run();
 
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+                        loginView.Close();
+                    };
+                }
+            }
         }
     }
 }

@@ -23,28 +23,7 @@ namespace ZQ.PrismUnityApp
 
         protected override DependencyObject CreateShell()
         {
-            var loginView = Container.TryResolve<LoginView>();
-            //登录
-            if (loginView != null)
-            {
-                var loginVm = loginView.DataContext as LoginViewModel;
-                if (loginVm != null)
-                {
-                    loginVm.Validate += () =>
-                    {
-                        var mainView = Container.TryResolve<Shell>();
-                        Application.Current.MainWindow = mainView;
-                        mainView.Show();
-
-                        loginView.Close();
-                    };
-                }
-                return loginView;
-            }
-            else
-            {
-                return Container.TryResolve<Shell>();
-            }
+            return this.Container.TryResolve<Shell>();
         }
 
         protected override void InitializeShell()
