@@ -59,9 +59,6 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
-                        this.moduleManager.LoadModule("AboutModule");
-                        var st = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.About.Views.MainView).Name);
-
                         Menu menu;
                         if (Enum.TryParse(str, out menu))
                         {
@@ -69,7 +66,7 @@ namespace ZQ.PrismUnityApp.ViewModels
                             {
                                 this.CurrentMenu = menu;
 
-                                var obj = new object();
+                                object obj = null;
 
                                 switch (menu)
                                 {
@@ -87,19 +84,20 @@ namespace ZQ.PrismUnityApp.ViewModels
                                     #endregion
 
                                     case Menu.设置:
-                                        this.moduleManager.LoadModule("SettingsModule");
-                                        obj = this.regionManager.Regions[this.MainRegion].GetView("MainView");
-                                        this.regionManager.Regions[this.MainRegion].Activate(obj);
+                                        moduleManager.LoadModule(typeof(Module.Settings.SettingsModule).Name);
+                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Settings.Views.MainView).FullName);
                                         break;
                                     case Menu.关于:
-                                        this.moduleManager.LoadModule("AboutModule");
-                                        obj = this.regionManager.Regions[this.MainRegion].GetView("MainView");
-                                        this.regionManager.Regions[this.MainRegion].Activate(obj);
+                                        moduleManager.LoadModule(typeof(Module.About.AboutModule).Name);
+                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.About.Views.MainView).FullName); 
                                         break;
                                     default:
                                         return;
                                 }
-                                
+                                if (obj != null)
+                                {
+                                    this.regionManager.Regions[this.MainRegion].Activate(obj);
+                                }
                             }
                         }
                     }));

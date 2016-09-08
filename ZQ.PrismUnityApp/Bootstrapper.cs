@@ -8,7 +8,7 @@ using Prism.Events;
 
 namespace ZQ.PrismUnityApp
 {
-    class Bootstrapper : UnityBootstrapper
+    partial class Bootstrapper : UnityBootstrapper
     {
         /// <summary>
         /// 获取全局的事件聚合器
@@ -69,18 +69,18 @@ namespace ZQ.PrismUnityApp
         /// 创建基于配置文件的依赖注入容器
         /// </summary>
         /// <returns></returns>
-        //protected override IUnityContainer CreateContainer()
-        //{
-        //    return base.CreateContainer();
-        //}
+        protected override IUnityContainer CreateContainer()
+        {
+            return base.CreateContainer();
+        }
 
         /// <summary>
         /// 获取全局的一个日志处理对象
         /// </summary>
         /// <returns></returns>
-        //protected override Prism.Logging.ILoggerFacade CreateLogger()
-        //{
-        //    return base.CreateLogger();
-        //}
+        protected override Prism.Logging.ILoggerFacade CreateLogger()
+        {
+            return base.CreateLogger();
+        }
     }
 }

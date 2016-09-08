@@ -181,45 +181,16 @@ public class SettingsModule : IModule
 ```C#
 protected override void ConfigureModuleCatalog()
 {
-    #region 基于代码方式的模块加载方法
     var typeGuidance = typeof(Module.Guidance.GuidanceModule);
-    var guidanceModule = new ModuleInfo()
-    {
-        ModuleName = typeGuidance.Name,
-        ModuleType = typeGuidance.AssemblyQualifiedName,
-        InitializationMode = InitializationMode.WhenAvailable
-    };
-
     var typeSyutsou = typeof(Module.Syutsou.SyutsouModule);
-    var syutsouModule = new ModuleInfo()
-    {
-        ModuleName = typeSyutsou.Name,
-        ModuleType = typeSyutsou.AssemblyQualifiedName,
-        InitializationMode = InitializationMode.WhenAvailable
-    };
-
     var typeSettings = typeof(Module.Settings.SettingsModule);
-    var settingsModule = new ModuleInfo()
-    {
-        ModuleName = typeSettings.Name,
-        ModuleType = typeSettings.AssemblyQualifiedName,
-        InitializationMode = InitializationMode.WhenAvailable
-    };
-
     var typeAbout = typeof(Module.About.AboutModule);
-    var aboutModule = new ModuleInfo()
-    {
-        ModuleName = typeAbout.Name,
-        ModuleType = typeAbout.AssemblyQualifiedName,
-        InitializationMode = InitializationMode.WhenAvailable
-    };
 
-    this.ModuleCatalog.AddModule(guidanceModule);
-    this.ModuleCatalog.AddModule(syutsouModule);
-    this.ModuleCatalog.AddModule(settingsModule);
-    this.ModuleCatalog.AddModule(aboutModule);
-
-    #endregion
+    //按需加载模块（InitializationMode.WhenAvailable，需要自己手动进行加载，使用moduleManager.LoadModule("模块名称")）
+    this.ModuleCatalog.AddModule(new ModuleInfo(typeGuidance.Name, typeGuidance.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
+    this.ModuleCatalog.AddModule(new ModuleInfo(typeSyutsou.Name, typeSyutsou.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
+    this.ModuleCatalog.AddModule(new ModuleInfo(typeSettings.Name, typeSettings.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
+    this.ModuleCatalog.AddModule(new ModuleInfo(typeAbout.Name, typeAbout.AssemblyQualifiedName) { InitializationMode = InitializationMode.OnDemand });
 }
 ```
 ### 2.2 通过XAML文件注册模块
@@ -234,7 +205,6 @@ protected override void ConfigureModuleCatalog()
     <startup> 
         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.1"/>
     </startup>
-
   <modules>
     <module assemblyFile="ZQ.Module.Guidance.dll" moduleType="ZQ.Module.Guidance.GuidanceModule, ZQ.Module.Guidance, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" moduleName="GuidanceModule" startupLoaded="true" />
     <module assemblyFile="ZQ.Module.Syutsou.dll" moduleType="ZQ.Module.Syutsou.SyutsouModule, ZQ.Module.Syutsou, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" moduleName="SyutsouModule" startupLoaded="true" />
@@ -270,8 +240,19 @@ protected override IModuleCatalog CreateModuleCatalog()
 ## 3. 模块切换
 模块切换有多种方式，依据个人能力，这里我做一个简单汇总，后期会陆续更新
 ### 3.1 请求页面跳转
+页面注册方式：
+页面跳转方式：
+
+
 ### 3.2 动态加载模块
+页面注册方式：
+页面跳转方式：
+
+
 ### 3.3 通过事件聚合器来进行模块更新
+页面注册方式：
+页面跳转方式：
+
 
 
 ## 4. 事件通知

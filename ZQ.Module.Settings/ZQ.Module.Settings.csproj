@@ -90,7 +90,12 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ZQ.Common\ZQ.Common.csproj">
+      <Project>{0f3ff826-f549-4f0c-bb36-c1e0de5f1615}</Project>
+      <Name>ZQ.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
