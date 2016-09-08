@@ -70,25 +70,16 @@ namespace ZQ.PrismUnityApp.ViewModels
 
                                 switch (menu)
                                 {
-                                    #region MyRegion
-
-                                    //case Menu.祖训:
-                                    //    this.moduleManager.LoadModule("GuidanceModule");
-                                    //    //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Guidance.Views.MainView));
-                                    //    break;
-                                    //case Menu.世祖:
-                                    //    this.moduleManager.LoadModule("SyutsouModule");
-                                    //    //this.regionManager.Regions[this.MainRegion].Activate(typeof(Module.Syutsou.Views.MainView));
-                                    //    break;
-
-                                    #endregion
-
+                                    case Menu.祖训:
+                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Guidance.Views.MainView).FullName);
+                                        break;
+                                    case Menu.世祖:
+                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Syutsou.Views.MainView).FullName);
+                                        break;
                                     case Menu.设置:
-                                        moduleManager.LoadModule(typeof(Module.Settings.SettingsModule).Name);
                                         obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Settings.Views.MainView).FullName);
                                         break;
                                     case Menu.关于:
-                                        moduleManager.LoadModule(typeof(Module.About.AboutModule).Name);
                                         obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.About.Views.MainView).FullName); 
                                         break;
                                     default:
@@ -97,6 +88,7 @@ namespace ZQ.PrismUnityApp.ViewModels
                                 if (obj != null)
                                 {
                                     this.regionManager.Regions[this.MainRegion].Activate(obj);
+                                    Debug.WriteLine(this.CurrentMenu);
                                 }
                             }
                         }
@@ -106,6 +98,15 @@ namespace ZQ.PrismUnityApp.ViewModels
 
         public ShellViewModel()
         {
+            #region 手动加载模块
+
+            //this.moduleManager.LoadModule(typeof(Module.Guidance.GuidanceModule).Name);
+            //this.moduleManager.LoadModule(typeof(Module.Syutsou.SyutsouModule).Name);
+            //moduleManager.LoadModule(typeof(Module.Settings.SettingsModule).Name);
+            //moduleManager.LoadModule(typeof(Module.About.AboutModule).Name);
+
+            #endregion
+
             this.moduleManager.ModuleDownloadProgressChanged += moduleManager_ModuleDownloadProgressChanged;
             this.moduleManager.LoadModuleCompleted += moduleManager_LoadModuleCompleted;
         }

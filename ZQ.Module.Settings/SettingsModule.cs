@@ -17,7 +17,7 @@ namespace ZQ.Module.Settings
 
         public void Initialize()
         {
-            //_regionManager.RegisterViewWithRegion("MainRegion", typeof(Views.MainView));
+            //_regionManager.RegisterViewWithRegion("MainRegion", typeof(ViewMainViews));
 
             _regionManager.Regions["MainRegion"].Add(new MainView(), typeof(MainView).FullName);
         }
