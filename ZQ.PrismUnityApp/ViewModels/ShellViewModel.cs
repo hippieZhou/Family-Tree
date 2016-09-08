@@ -98,15 +98,6 @@ namespace ZQ.PrismUnityApp.ViewModels
 
         public ShellViewModel()
         {
-            #region 手动加载模块
-
-            //this.moduleManager.LoadModule(typeof(Module.Guidance.GuidanceModule).Name);
-            //this.moduleManager.LoadModule(typeof(Module.Syutsou.SyutsouModule).Name);
-            //moduleManager.LoadModule(typeof(Module.Settings.SettingsModule).Name);
-            //moduleManager.LoadModule(typeof(Module.About.AboutModule).Name);
-
-            #endregion
-
             this.moduleManager.ModuleDownloadProgressChanged += moduleManager_ModuleDownloadProgressChanged;
             this.moduleManager.LoadModuleCompleted += moduleManager_LoadModuleCompleted;
         }

@@ -32,8 +32,9 @@ namespace ZQ.PrismUnityApp
             Application.Current.MainWindow.Show();
         }
 
-        #region 基于代码方式加载模块
-
+        /// <summary>
+        /// 基于代码方式加载模块，只需要重写该函数即可
+        /// </summary>
         protected override void ConfigureModuleCatalog()
         {
             var typeGuidance = typeof(Module.Guidance.GuidanceModule);
@@ -41,14 +42,22 @@ namespace ZQ.PrismUnityApp
             var typeSettings = typeof(Module.Settings.SettingsModule);
             var typeAbout = typeof(Module.About.AboutModule);
 
-            //按需加载模块
+            //自动加载模块
             this.ModuleCatalog.AddModule(new ModuleInfo(typeGuidance.Name, typeGuidance.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
             this.ModuleCatalog.AddModule(new ModuleInfo(typeSyutsou.Name, typeSyutsou.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
             this.ModuleCatalog.AddModule(new ModuleInfo(typeSettings.Name, typeSettings.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
             this.ModuleCatalog.AddModule(new ModuleInfo(typeAbout.Name, typeAbout.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
-        }
 
-        #endregion
+            #region 手动加载模块
+
+            //如果： InitializationMode = InitializationMode.OnDemand ，则需要在使用对应模块前加载该模块
+            //this.moduleManager.LoadModule(typeof(Module.Guidance.GuidanceModule).Name);
+            //this.moduleManager.LoadModule(typeof(Module.Syutsou.SyutsouModule).Name);
+            //this.moduleManager.LoadModule(typeof(Module.Settings.SettingsModule).Name);
+            //this.moduleManager.LoadModule(typeof(Module.About.AboutModule).Name);
+
+            #endregion
+        }
 
 
         /// <summary>
