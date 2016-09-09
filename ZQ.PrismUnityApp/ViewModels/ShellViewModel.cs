@@ -5,6 +5,7 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Windows;
 
@@ -52,6 +53,14 @@ namespace ZQ.PrismUnityApp.ViewModels
             set { SetProperty(ref _currentMenu, value); }
         }
 
+        private ConcurrentQueue<object> _viewQueue;
+        public ConcurrentQueue<object> ViewQueue
+        {
+            get { return _viewQueue ?? (_viewQueue = new ConcurrentQueue<object>()); }
+            set { SetProperty(ref _viewQueue, value); }
+        }
+        
+
         private DelegateCommand<string> _chooseMenuCmd;
         public DelegateCommand<string> ChooseMenuCmd
         {
@@ -88,6 +97,7 @@ namespace ZQ.PrismUnityApp.ViewModels
                                 if (obj != null)
                                 {
                                     this.regionManager.Regions[this.MainRegion].Activate(obj);
+                                    this.ViewQueue.Enqueue(obj);
                                     Debug.WriteLine(this.CurrentMenu);
                                 }
                             }
@@ -97,17 +107,20 @@ namespace ZQ.PrismUnityApp.ViewModels
         }
 
         private DelegateCommand _gobackCmd;
-
         public DelegateCommand GobackCmd
         {
             get
             {
                 return _gobackCmd ?? (_gobackCmd = new DelegateCommand(() =>
                     {
+                        object obj = null;
+                        if (this.ViewQueue.TryDequeue(out obj))
+                        {
+                            this.regionManager.RequestNavigate(this.MainRegion, obj.ToString());
+                        }
                     }));
             }
         }
-
 
         public ShellViewModel()
         {
