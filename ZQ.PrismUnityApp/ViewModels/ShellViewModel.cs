@@ -45,19 +45,11 @@ namespace ZQ.PrismUnityApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        
-        private Menu _currentMenu;
-        public Menu CurrentMenu
+        private ConcurrentQueue<Tuple<Menu,object>> _menuandviewQueue;
+        public ConcurrentQueue<Tuple<Menu, object>> MenuAndViewQueue
         {
-            get { return _currentMenu; }
-            set { SetProperty(ref _currentMenu, value); }
-        }
-
-        private ConcurrentQueue<object> _viewQueue;
-        public ConcurrentQueue<object> ViewQueue
-        {
-            get { return _viewQueue ?? (_viewQueue = new ConcurrentQueue<object>()); }
-            set { SetProperty(ref _viewQueue, value); }
+            get { return _menuandviewQueue ?? (_menuandviewQueue = new ConcurrentQueue<Tuple<Menu, object>>()); }
+            set { SetProperty(ref _menuandviewQueue, value); }
         }
         
 
@@ -71,6 +63,11 @@ namespace ZQ.PrismUnityApp.ViewModels
                         Menu menu;
                         if (Enum.TryParse(str, out menu))
                         {
+                            var obj = new Tuple<Menu, object>(Menu.祖训, null);
+                            if (MenuAndViewQueue(out obj))
+                            {
+
+                            }
                             if (this.CurrentMenu != menu)
                             {
                                 this.CurrentMenu = menu;
@@ -97,7 +94,11 @@ namespace ZQ.PrismUnityApp.ViewModels
                                 if (obj != null)
                                 {
                                     this.regionManager.Regions[this.MainRegion].Activate(obj);
-                                    this.ViewQueue.Enqueue(obj);
+                                    this.MenuAndViewQueue.Enqueue(obj);
+
+                                    this.OnPropertyChanged(() => this.MenuAndViewQueue);
+                                    this.OnPropertyChanged(() => this.CurrentMenu);
+
                                     Debug.WriteLine(this.CurrentMenu);
                                 }
                             }
@@ -114,9 +115,12 @@ namespace ZQ.PrismUnityApp.ViewModels
                 return _gobackCmd ?? (_gobackCmd = new DelegateCommand(() =>
                     {
                         object obj = null;
-                        if (this.ViewQueue.TryDequeue(out obj))
+                        if (this.MenuAndViewQueue.TryDequeue(out obj))
                         {
                             this.regionManager.RequestNavigate(this.MainRegion, obj.ToString());
+
+                            this.OnPropertyChanged(() => this.MenuAndViewQueue);
+                            this.OnPropertyChanged(() => this.CurrentMenu);
                         }
                     }));
             }

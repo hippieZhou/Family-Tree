@@ -24,13 +24,14 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="AliceBlue">
             <StackPanel VerticalAlignment="Bottom">
-                <RadioButton IsChecked="True" GroupName="rb_Menu" Content="祖训" Tag="0" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="世祖" Tag="1" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="设置" Tag="2" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
-                <RadioButton GroupName="rb_Menu" Content="关于" Tag="3" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton IsChecked="{Binding CurrentMenu,Converter={StaticResource CurrentMenuConverter}}" GroupName="rb_Menu" Content="祖训" Tag="0" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton IsChecked="{Binding CurrentMenu,Converter={StaticResource CurrentMenuConverter}}" GroupName="rb_Menu" Content="世祖" Tag="1" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton IsChecked="{Binding CurrentMenu,Converter={StaticResource CurrentMenuConverter}}" GroupName="rb_Menu" Content="设置" Tag="2" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+                <RadioButton IsChecked="{Binding CurrentMenu,Converter={StaticResource CurrentMenuConverter}}" GroupName="rb_Menu" Content="关于" Tag="3" Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
             </StackPanel>
         </Grid>
         <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
-        <Button Content="GO back" Command="{Binding GobackCmd}" Foreground="Red" Opacity="0.5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="GO back" Visibility="{Binding ViewQueue.Count,Converter={StaticResource ViewQueueConverter}}" 
+                Command="{Binding GobackCmd}" Foreground="Red" Opacity="0.5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -10,6 +10,7 @@
                 <ResourceDictionary>
                     <sys:String x:Key="MainRegion">MainRegion</sys:String>
                     <converter:ViewQueueConverter x:Key="ViewQueueConverter"/>
+                    <converter:CurrentMenuConverter x:Key="CurrentMenuConverter"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
