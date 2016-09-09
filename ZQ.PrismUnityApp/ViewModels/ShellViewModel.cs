@@ -96,6 +96,19 @@ namespace ZQ.PrismUnityApp.ViewModels
             }
         }
 
+        private DelegateCommand _gobackCmd;
+
+        public DelegateCommand GobackCmd
+        {
+            get
+            {
+                return _gobackCmd ?? (_gobackCmd = new DelegateCommand(() =>
+                    {
+                    }));
+            }
+        }
+
+
         public ShellViewModel()
         {
             this.moduleManager.ModuleDownloadProgressChanged += moduleManager_ModuleDownloadProgressChanged;
