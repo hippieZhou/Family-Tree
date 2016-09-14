@@ -16,10 +16,10 @@ namespace ZQ.PrismUnityApp.ViewModels
     [Flags]
     public enum Menu
     {
-        祖训 = 0x01,
-        世祖 = 0x02,
-        设置 = 0x03,
-        关于 = 0x04
+        Guidance = 0x01,
+        Syutsou = 0x02,
+        Settings = 0x03,
+        About = 0x04
     };
 
     public class ShellViewModel : BindableBase
@@ -45,13 +45,12 @@ namespace ZQ.PrismUnityApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        private ConcurrentQueue<Tuple<Menu,object>> _menuandviewQueue;
-        public ConcurrentQueue<Tuple<Menu, object>> MenuAndViewQueue
+        private ConcurrentQueue<Menu> _vmCollection;
+        public ConcurrentQueue<Menu> VmCollection
         {
-            get { return _menuandviewQueue ?? (_menuandviewQueue = new ConcurrentQueue<Tuple<Menu, object>>()); }
-            set { SetProperty(ref _menuandviewQueue, value); }
+            get { return _vmCollection ?? (_vmCollection = new ConcurrentQueue<object>()); }
+            set { SetProperty(ref _vmCollection, value); }
         }
-        
 
         private DelegateCommand<string> _chooseMenuCmd;
         public DelegateCommand<string> ChooseMenuCmd
@@ -63,47 +62,42 @@ namespace ZQ.PrismUnityApp.ViewModels
                         Menu menu;
                         if (Enum.TryParse(str, out menu))
                         {
-                            var obj = new Tuple<Menu, object>(Menu.祖训, null);
-                            if (MenuAndViewQueue(out obj))
+                            Menu temp;
+                            this.VmCollection.TryPeek(out temp);
+                            if (temp != menu)
                             {
-
-                            }
-                            if (this.CurrentMenu != menu)
-                            {
-                                this.CurrentMenu = menu;
-
-                                object obj = null;
-
-                                switch (menu)
-                                {
-                                    case Menu.祖训:
-                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Guidance.Views.MainView).FullName);
-                                        break;
-                                    case Menu.世祖:
-                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Syutsou.Views.MainView).FullName);
-                                        break;
-                                    case Menu.设置:
-                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Settings.Views.MainView).FullName);
-                                        break;
-                                    case Menu.关于:
-                                        obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.About.Views.MainView).FullName); 
-                                        break;
-                                    default:
-                                        return;
-                                }
+                                object obj;
+                                FindViewByMenu(menu, out obj);
                                 if (obj != null)
                                 {
+                                    this.VmCollection.Enqueue(menu);
                                     this.regionManager.Regions[this.MainRegion].Activate(obj);
-                                    this.MenuAndViewQueue.Enqueue(obj);
-
-                                    this.OnPropertyChanged(() => this.MenuAndViewQueue);
-                                    this.OnPropertyChanged(() => this.CurrentMenu);
-
-                                    Debug.WriteLine(this.CurrentMenu);
                                 }
                             }
                         }
                     }));
+            }
+        }
+
+        private void FindViewByMenu(Menu menu, out object obj)
+        {
+            obj = null;
+            switch (menu)
+            {
+                case Menu.Guidance:
+                    obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Guidance.Views.MainView).FullName);
+                    break;
+                case Menu.Syutsou:
+                    obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Syutsou.Views.MainView).FullName);
+                    break;
+                case Menu.Settings:
+                    obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.Settings.Views.MainView).FullName);
+                    break;
+                case Menu.About:
+                    obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.About.Views.MainView).FullName);
+                    break;
+                default:
+                    return;
             }
         }
 
@@ -114,13 +108,11 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _gobackCmd ?? (_gobackCmd = new DelegateCommand(() =>
                     {
-                        object obj = null;
-                        if (this.MenuAndViewQueue.TryDequeue(out obj))
+                        Menu menu;
+                        if (this.VmCollection.TryDequeue(out menu))
                         {
                             this.regionManager.RequestNavigate(this.MainRegion, obj.ToString());
-
-                            this.OnPropertyChanged(() => this.MenuAndViewQueue);
-                            this.OnPropertyChanged(() => this.CurrentMenu);
+                            this.OnPropertyChanged(() => this.VmCollection);
                         }
                     }));
             }
