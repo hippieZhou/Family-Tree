@@ -48,7 +48,7 @@ namespace ZQ.PrismUnityApp.ViewModels
         private ConcurrentQueue<Menu> _vmCollection;
         public ConcurrentQueue<Menu> VmCollection
         {
-            get { return _vmCollection ?? (_vmCollection = new ConcurrentQueue<object>()); }
+            get { return _vmCollection ?? (_vmCollection = new ConcurrentQueue<Menu>()); }
             set { SetProperty(ref _vmCollection, value); }
         }
 
@@ -111,6 +111,8 @@ namespace ZQ.PrismUnityApp.ViewModels
                         Menu menu;
                         if (this.VmCollection.TryDequeue(out menu))
                         {
+                            object obj = null;
+                            FindViewByMenu(menu, out obj);
                             this.regionManager.RequestNavigate(this.MainRegion, obj.ToString());
                             this.OnPropertyChanged(() => this.VmCollection);
                         }
