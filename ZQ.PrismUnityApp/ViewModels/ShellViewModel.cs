@@ -16,10 +16,10 @@ namespace ZQ.PrismUnityApp.ViewModels
     [Flags]
     public enum Menu
     {
-        Guidance = 0x01,
-        Syutsou = 0x02,
-        Settings = 0x03,
-        About = 0x04
+        Guidance = 0x00,
+        Syutsou = 0x01,
+        Settings = 0x02,
+        About = 0x03
     };
 
     public class ShellViewModel : BindableBase
@@ -72,6 +72,7 @@ namespace ZQ.PrismUnityApp.ViewModels
                                 {
                                     this.VmCollection.Enqueue(menu);
                                     this.regionManager.Regions[this.MainRegion].Activate(obj);
+                                    this.OnPropertyChanged(() => this.VmCollection);
                                 }
                             }
                         }
@@ -127,9 +128,11 @@ namespace ZQ.PrismUnityApp.ViewModels
         }
         void moduleManager_ModuleDownloadProgressChanged(object sender, ModuleDownloadProgressChangedEventArgs e)
         {
+            Debug.WriteLine(string.Format("当前加载进度：{0}", e.BytesReceived.ToString()));
         }
         void moduleManager_LoadModuleCompleted(object sender, LoadModuleCompletedEventArgs e)
         {
+            Debug.WriteLine("模块加载完毕！");
         }
     }
 }
