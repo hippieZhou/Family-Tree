@@ -8,7 +8,16 @@ namespace ZQ.PrismUnityApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return (int.Parse(value.ToString()) > 0) ? Visibility.Visible : Visibility.Collapsed;
+            int count = 0;
+            if (int.TryParse(value.ToString(), out count))
+            {
+
+                return count > 0 ? Visibility.Visible : Visibility.Collapsed;
+            }
+            else
+            {
+                return Visibility.Collapsed;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
