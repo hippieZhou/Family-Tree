@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="祖训" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

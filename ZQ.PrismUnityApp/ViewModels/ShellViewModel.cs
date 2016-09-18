@@ -48,7 +48,15 @@ namespace ZQ.PrismUnityApp.ViewModels
         private ConcurrentQueue<Menu> _vmCollection;
         public ConcurrentQueue<Menu> VmCollection
         {
-            get { return _vmCollection ?? (_vmCollection = new ConcurrentQueue<Menu>()); }
+            get
+            {
+                if (_vmCollection == null)
+                {
+                    _vmCollection = new ConcurrentQueue<Menu>();
+                    _vmCollection.Enqueue(Menu.Guidance);
+                }
+                return _vmCollection;
+            }
             set { SetProperty(ref _vmCollection, value); }
         }
 

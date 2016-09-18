@@ -12,7 +12,7 @@ namespace ZQ.PrismUnityApp.Converters
             if (int.TryParse(value.ToString(), out count))
             {
 
-                return count > 0 ? Visibility.Visible : Visibility.Collapsed;
+                return count > 1 ? Visibility.Visible : Visibility.Collapsed;
             }
             else
             {
