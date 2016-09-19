@@ -72,12 +72,16 @@ namespace ZQ.PrismUnityApp.ViewModels
                         {
                             Menu temp;
                             this.VmCollection.TryPeek(out temp);
+
                             if (temp != menu)
                             {
                                 object obj;
                                 FindViewByMenu(menu, out obj);
+
                                 if (obj != null)
                                 {
+                                    Debug.WriteLine(menu);
+
                                     this.VmCollection.Enqueue(menu);
                                     this.regionManager.Regions[this.MainRegion].Activate(obj);
                                     this.OnPropertyChanged(() => this.VmCollection);
