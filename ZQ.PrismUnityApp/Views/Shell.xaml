@@ -23,14 +23,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Menu Grid.Row="0" IsMainMenu="True">
-                <!-- Visibility="{Binding VmCollection.Count,Converter={StaticResource ViewQueueConverter}}"-->
-                <MenuItem Header="←" Command="{Binding GobackCmd}"/>
                 <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="Guidance" Tag="祖训"/>
                 <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="Syutsou" Tag="世祖"/>
                 <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="Settings" Tag="设置"/>
                 <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="About" Tag="关于"/>
             </Menu>
-            <ContentControl Tag="{Binding CurrentTag}" Grid.Row="1" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
+            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
         </Grid>
     </Grid>
 </Window>

@@ -44,21 +44,7 @@ namespace ZQ.PrismUnityApp.ViewModels
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
-
-        private ConcurrentQueue<Menu> _vmCollection;
-        public ConcurrentQueue<Menu> VmCollection
-        {
-            get
-            {
-                if (_vmCollection == null)
-                {
-                    _vmCollection = new ConcurrentQueue<Menu>();
-                    _vmCollection.Enqueue(Menu.Guidance);
-                }
-                return _vmCollection;
-            }
-            set { SetProperty(ref _vmCollection, value); }
-        }
+        
 
         private DelegateCommand<string> _chooseMenuCmd;
         public DelegateCommand<string> ChooseMenuCmd
@@ -67,34 +53,25 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _chooseMenuCmd ?? (_chooseMenuCmd = new DelegateCommand<string>((str) =>
                     {
-                        Menu menu;
-                        if (Enum.TryParse(str, out menu))
+                        if (this.Title != str)
                         {
-                            Menu temp;
-                            this.VmCollection.TryPeek(out temp);
-
-                            if (temp != menu)
+                            Menu menu;
+                            if (Enum.TryParse(str, out menu))
                             {
-                                object obj;
-                                FindViewByMenu(menu, out obj);
+                                object obj = FindViewByMenu(menu);
+                                this.regionManager.Regions[this.MainRegion].Activate(obj);
 
-                                if (obj != null)
-                                {
-                                    Debug.WriteLine(menu);
-
-                                    this.VmCollection.Enqueue(menu);
-                                    this.regionManager.Regions[this.MainRegion].Activate(obj);
-                                    this.OnPropertyChanged(() => this.VmCollection);
-                                }
+                                this.Title = str;
+                                Debug.WriteLine(str);
                             }
                         }
                     }));
             }
         }
 
-        private void FindViewByMenu(Menu menu, out object obj)
+        private object FindViewByMenu(Menu menu)
         {
-            obj = null;
+            object obj = null;
             switch (menu)
             {
                 case Menu.Guidance:
@@ -110,27 +87,9 @@ namespace ZQ.PrismUnityApp.ViewModels
                     obj = this.regionManager.Regions[this.MainRegion].GetView(typeof(Module.About.Views.MainView).FullName);
                     break;
                 default:
-                    return;
+                    break;
             }
-        }
-
-        private DelegateCommand _gobackCmd;
-        public DelegateCommand GobackCmd
-        {
-            get
-            {
-                return _gobackCmd ?? (_gobackCmd = new DelegateCommand(() =>
-                    {
-                        Menu menu;
-                        if (this.VmCollection.TryDequeue(out menu))
-                        {
-                            object obj = null;
-                            FindViewByMenu(menu, out obj);
-                            this.regionManager.RequestNavigate(this.MainRegion, obj.ToString());
-                            this.OnPropertyChanged(() => this.VmCollection);
-                        }
-                    }));
-            }
+            return obj;
         }
 
         public ShellViewModel()
