@@ -13,14 +13,17 @@ namespace ZQ.PrismUnityApp
         /// <summary>
         /// 获取全局的事件聚合器
         /// </summary>
-        //public IEventAggregator EventAggregator
-        //{
-        //    get
-        //    {
-        //        return this.Container.TryResolve<IEventAggregator>();
-        //    }
-        //}
+        public IEventAggregator EventAggregator
+        {
+            get
+            {
+                return this.Container.TryResolve<IEventAggregator>();
+            }
+        }
+    }
 
+    partial class Bootstrapper : UnityBootstrapper
+    {
         protected override DependencyObject CreateShell()
         {
             return this.Container.TryResolve<Shell>();
