@@ -22,10 +22,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" IsMainMenu="True">
-                <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="Guidance" Tag="祖训"/>
-                <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="Syutsou" Tag="世祖"/>
-                <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="Settings" Tag="设置"/>
-                <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="About" Tag="关于"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="祖训" Tag="祖训"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="世祖" Tag="世祖"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="设置" Tag="设置"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="关于" Tag="关于"/>
             </Menu>
         <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
     </Grid>
