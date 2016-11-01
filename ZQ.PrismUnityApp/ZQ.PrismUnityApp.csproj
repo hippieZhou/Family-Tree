@@ -152,6 +152,10 @@
       <Project>{93a7356e-07a9-49d1-bb83-cddce7309be3}</Project>
       <Name>ZQ.Module.Guidance</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ZQ.Module.Other\ZQ.Module.Other.csproj">
+      <Project>{77d344bc-9e3b-474a-a471-3c88a97c0725}</Project>
+      <Name>ZQ.Module.Other</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ZQ.Module.Settings\ZQ.Module.Settings.csproj">
       <Project>{a59e102f-21df-4a9a-a37e-0b2c2795371a}</Project>
       <Name>ZQ.Module.Settings</Name>

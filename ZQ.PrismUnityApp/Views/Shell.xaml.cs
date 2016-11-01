@@ -1,8 +1,4 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
-using Prism.Regions;
-using System.Windows;
-using ZQ.PrismUnityApp.ViewModels;
+﻿using System.Windows;
 
 namespace ZQ.PrismUnityApp.Views
 {
@@ -14,7 +10,6 @@ namespace ZQ.PrismUnityApp.Views
         public Shell()
         {
             InitializeComponent();
-            this.DataContext = new ShellViewModel();
         }
     }
 }

@@ -51,6 +51,10 @@ namespace ZQ.PrismUnityApp
             this.ModuleCatalog.AddModule(new ModuleInfo(typeSettings.Name, typeSettings.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
             this.ModuleCatalog.AddModule(new ModuleInfo(typeAbout.Name, typeAbout.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
 
+            var typeOther = typeof(Module.Other.OtherModule);
+
+            this.ModuleCatalog.AddModule(new ModuleInfo(typeOther.Name, typeOther.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
+
             #region 手动加载模块
 
             //如果： InitializationMode = InitializationMode.OnDemand ，则需要在使用对应模块前加载该模块
