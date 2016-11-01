@@ -2,6 +2,7 @@
 using Microsoft.Practices.Unity;
 using Prism.Regions;
 using System.Windows;
+using ZQ.PrismUnityApp.ViewModels;
 
 namespace ZQ.PrismUnityApp.Views
 {
@@ -13,6 +14,7 @@ namespace ZQ.PrismUnityApp.Views
         public Shell()
         {
             InitializeComponent();
+            this.DataContext = new ShellViewModel();
         }
     }
 }

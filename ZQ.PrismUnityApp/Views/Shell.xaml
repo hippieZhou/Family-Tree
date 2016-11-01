@@ -7,14 +7,10 @@
     x:Class="ZQ.PrismUnityApp.Views.Shell"
     WindowStartupLocation="CenterScreen"
     prism:ViewModelLocator.AutoWireViewModel="True"
-    xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"
     Title="{Binding Title}" 
     MinHeight="400" MinWidth="600"
     Height="400" Width="600"
     MaxHeight="400" MaxWidth="600">
-    <Window.DataContext>
-        <vm:ShellViewModel/>
-    </Window.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,10 +18,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" IsMainMenu="True">
-            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="祖训" Tag="祖训"/>
-            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="世祖" Tag="世祖"/>
-            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="设置" Tag="设置"/>
-            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Header, RelativeSource={RelativeSource Self}}" Header="关于" Tag="关于"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}" Header="祖训" Tag="Guidance"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}" Header="世祖" Tag="Syutsou"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}" Header="设置" Tag="Settings"/>
+            <MenuItem Command="{Binding ChooseMenuCmd}" CommandParameter="{Binding Tag, RelativeSource={RelativeSource Self}}" Header="关于" Tag="About"/>
             </Menu>
         <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{StaticResource MainRegion}"/>
     </Grid>
