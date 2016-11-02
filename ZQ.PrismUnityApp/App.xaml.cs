@@ -13,11 +13,11 @@ namespace ZQ.PrismUnityApp
         {
             var loginView = new LoginView();
             //登录
-            if (loginView != null)
+            if (null != loginView)
             {
                 loginView.Show();
                 var loginVm = loginView.DataContext as LoginViewModel;
-                if (loginVm != null)
+                if (null != loginVm)
                 {
                     loginVm.Validate += () =>
                     {

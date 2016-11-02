@@ -1,10 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace ZQ.PrismUnityApp.ViewModels
@@ -20,10 +16,7 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _loginCmd ?? (_loginCmd = new DelegateCommand(() =>
                     {
-                        if(this.Validate != null)
-                        {
-                            this.Validate();
-                        }
+                        this.Validate?.Invoke();
                     }));
             }
         }

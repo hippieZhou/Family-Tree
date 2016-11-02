@@ -1,11 +1,9 @@
 ﻿using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
 using Prism.Commands;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Windows;
 
