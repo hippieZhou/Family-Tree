@@ -2,7 +2,6 @@
 using Prism.Unity;
 using ZQ.PrismUnityApp.Views;
 using System.Windows;
-using ZQ.PrismUnityApp.ViewModels;
 using Prism.Modularity;
 using Prism.Events;
 
@@ -53,8 +52,8 @@ namespace ZQ.PrismUnityApp
 
             var typeOther = typeof(Module.Other.OtherModule);
 
+            //额外添加一个模块在另一个模块中（非依赖关系）
             this.ModuleCatalog.AddModule(new ModuleInfo(typeOther.Name, typeOther.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
-
             #region 手动加载模块
 
             //如果： InitializationMode = InitializationMode.OnDemand ，则需要在使用对应模块前加载该模块

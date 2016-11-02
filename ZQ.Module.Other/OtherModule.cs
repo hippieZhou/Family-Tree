@@ -9,11 +9,11 @@ namespace ZQ.Module.Other
         IRegionManager _regionManager;
         public OtherModule(IRegionManager regionManager)
         {
-            _regionManager = regionManager;
+            this._regionManager = regionManager;
         }
         public void Initialize()
         {
-            _regionManager.Regions["OtherRegion"].Add(new MainView(), typeof(MainView).FullName);
+            this._regionManager.Regions["OtherRegion"].Add(new MainView(), typeof(MainView).FullName);
         }
     }
 }

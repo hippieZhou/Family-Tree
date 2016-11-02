@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace ZQ.Module.Other.Views
 {
@@ -10,6 +11,11 @@ namespace ZQ.Module.Other.Views
         public MainView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("这是在一个模块中动态加载另一个模块！");
         }
     }
 }
