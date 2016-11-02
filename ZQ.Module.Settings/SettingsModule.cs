@@ -1,6 +1,5 @@
 ﻿using Prism.Modularity;
 using Prism.Regions;
-using System;
 using ZQ.Module.Settings.Views;
 
 namespace ZQ.Module.Settings
