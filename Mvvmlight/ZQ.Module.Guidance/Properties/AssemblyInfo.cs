@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("ZQ.Module.About")]
+[assembly: AssemblyTitle("ZQ.Module.Guidance")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ZQ.Module.About")]
+[assembly: AssemblyProduct("ZQ.Module.Guidance")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("a43a7d9c-1b47-4bb4-80f7-1f8c8ca93987")]
+[assembly: Guid("3beccb26-f2a3-44ca-af7b-dc1805b930d2")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

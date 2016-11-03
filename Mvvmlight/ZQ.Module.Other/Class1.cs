@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZQ.Common
+namespace ZQ.Module.Other
 {
     public class Class1
     {

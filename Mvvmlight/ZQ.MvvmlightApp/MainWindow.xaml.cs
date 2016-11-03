@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ZQ.MvvmlightApp.Views
+namespace ZQ.MvvmlightApp
 {
     /// <summary>
-    /// LoginView.xaml 的交互逻辑
+    /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginView : Window
+    public partial class MainWindow : Window
     {
-        public LoginView()
+        public MainWindow()
         {
             InitializeComponent();
         }
