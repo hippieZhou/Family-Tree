@@ -7,7 +7,10 @@ namespace ZQ.PrismUnityApp.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
-        public Action Validate;
+        //public Action Validate; 简化版
+        public delegate void Validate(object sender);
+        public event Validate ValiateEvent;
+
 
         private DelegateCommand _loginCmd;
         public DelegateCommand LoginCmd
@@ -16,7 +19,10 @@ namespace ZQ.PrismUnityApp.ViewModels
             {
                 return _loginCmd ?? (_loginCmd = new DelegateCommand(() =>
                     {
-                        this.Validate?.Invoke();
+                        if (this.ValiateEvent != null)
+                        {
+                            this.ValiateEvent(DateTime.Now);
+                        }
                     }));
             }
         }
