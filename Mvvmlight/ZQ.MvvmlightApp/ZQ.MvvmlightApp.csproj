@@ -125,7 +125,28 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ZQ.Module.About\ZQ.Module.About.csproj">
+      <Project>{a43a7d9c-1b47-4bb4-80f7-1f8c8ca93987}</Project>
+      <Name>ZQ.Module.About</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZQ.Module.Guidance\ZQ.Module.Guidance.csproj">
+      <Project>{3beccb26-f2a3-44ca-af7b-dc1805b930d2}</Project>
+      <Name>ZQ.Module.Guidance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZQ.Module.Other\ZQ.Module.Other.csproj">
+      <Project>{9bd793d2-2d5c-4089-9045-9ac3fe1409f9}</Project>
+      <Name>ZQ.Module.Other</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZQ.Module.Settings\ZQ.Module.Settings.csproj">
+      <Project>{3ba0952f-b5d0-4929-a49b-4d61d4107bf4}</Project>
+      <Name>ZQ.Module.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZQ.Module.Syutsou\ZQ.Module.Syutsou.csproj">
+      <Project>{ebc3225d-c7c3-4ac9-ba2c-4143cbb8d0e0}</Project>
+      <Name>ZQ.Module.Syutsou</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

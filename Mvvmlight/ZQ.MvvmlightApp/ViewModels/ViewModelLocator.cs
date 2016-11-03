@@ -13,14 +13,15 @@ namespace ZQ.MvvmlightApp.ViewModels
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
-            //SimpleIoc.Default.Register<MainViewModel>();
         }
 
         /// <summary>
         /// Gets the view's ViewModel.
         /// </summary>
-        //public LoginViewModel Login => ServiceLocator.Current.GetInstance<LoginViewModel>();
+        public LoginViewModel Login => ServiceLocator.Current.GetInstance<LoginViewModel>();
 
         /// <summary>
         /// Gets the Main property.
