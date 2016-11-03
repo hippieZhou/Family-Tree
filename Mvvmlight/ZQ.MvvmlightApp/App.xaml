@@ -1,9 +1,9 @@
 ﻿<Application x:Class="ZQ.MvvmlightApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ZQ.MvvmlightApp"
-             StartupUri="MainWindow.xaml">
+             xmlns:vm="clr-namespace:ZQ.MvvmlightApp.ViewModels"
+             xmlns:local="clr-namespace:ZQ.MvvmlightApp" StartupUri="Views/Shell.xaml">
     <Application.Resources>
-         
+        <vm:ViewModelLocator x:Key="Locator"/>
     </Application.Resources>
 </Application>

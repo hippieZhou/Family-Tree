@@ -1,17 +1,16 @@
-﻿<Window x:Class="ZQ.PrismUnityApp.Views.LoginView"
+﻿<Window x:Class="ZQ.MvvmlightApp.Views.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:prism="http://prismlibrary.com/"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZQ.MvvmlightApp.Views"
+        mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         AllowsTransparency="True"
-        prism:ViewModelLocator.AutoWireViewModel="True">
-    <Window.DataContext>
-        <vm:LoginViewModel xmlns:vm="clr-namespace:ZQ.PrismUnityApp.ViewModels"/>
-    </Window.DataContext>
-    
+        DataContext="{Binding Login,Source={StaticResource Locator}}">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
             <Button Content="Login" Command="{Binding LoginCmd}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12"/>

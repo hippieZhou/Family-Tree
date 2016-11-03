@@ -13,23 +13,19 @@ namespace ZQ.PrismUnityApp
         protected override void OnStartup(StartupEventArgs e)
         {
             var loginView = new LoginView();
-            //登录
-            if (null != loginView)
+            loginView.Show();
+            var loginVm = loginView.DataContext as LoginViewModel;
+            if (null != loginVm)
             {
-                loginView.Show();
-                var loginVm = loginView.DataContext as LoginViewModel;
-                if (null != loginVm)
+                loginVm.ValiateEvent += (time) =>
                 {
-                    loginVm.ValiateEvent += (time) =>
-                    {
-                        var bootstrapper = new Bootstrapper();
-                        bootstrapper.Run();
+                    var bootstrapper = new Bootstrapper();
+                    bootstrapper.Run();
 
-                        loginView.Close();
+                    loginView.Close();
 
-                        Debug.WriteLine(string.Format("当前登陆时间：{0}", time));
-                    };
-                }
+                    Debug.WriteLine(string.Format("当前登陆时间：{0}", time));
+                };
             }
         }
     }
